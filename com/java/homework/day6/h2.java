@@ -13,16 +13,18 @@ public class h2 {
         int []arr ={3,2,1,4,5};
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
+        int index =-1;
         for (int i = 0; i < arr.length ; i++) {
             if(arr[i]==n){
-                System.out.println(i);
+
+                index = i;
                 break;
-            }else if(i== arr.length-1&&arr[i]!=n){
-                System.out.println(-1);
             }
+            }
+        System.out.println(index);
         }
 
 
 
     }
-}
+
