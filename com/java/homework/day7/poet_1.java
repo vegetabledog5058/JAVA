@@ -1,10 +1,10 @@
-package com.java.homework.day6.day7;
+package com.java.homework.day7;
 
 /**
  * @author SiYi
  * @version 1.0
  * @date 2023/8/9 19:03
- * @desciption: 多维数组
+ * @desciption: 多维数组输出
  */
 public class poet_1 {
     public static void main(String[] args) {
@@ -15,8 +15,7 @@ public class poet_1 {
                 {'低','头','思','故','乡'}
         };
         //p1(arr);
-        p2(arr);
-        //p3(arr);
+        //p2(arr);
 
     }
 

@@ -1,5 +1,7 @@
 package com.java.homework.day6_rank;
 
+import com.sun.source.tree.Scope;
+
 import java.util.Arrays;
 
 /**
@@ -22,9 +24,8 @@ public class select {
             int tem = array[i];
             array[i] = array[min];
             array[min] = tem;
-
-
         }
+
         System.out.println(Arrays.toString(array));
     }
 }
