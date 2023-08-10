@@ -28,9 +28,9 @@ public class two_insert {
                 index--;
             }
             scores[index + 1][0] = cur;
-
-            //遍历
         }
+            //遍历
+
         for (int i = 0; i < scores.length; i++) {
             System.out.println(Arrays.toString(scores[i]));
         }

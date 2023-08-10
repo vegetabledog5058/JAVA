@@ -18,7 +18,7 @@ public class insert {
             int preindex = i-1;
             int current = array[i];
             //当当前值小于索引值执行循环
-            while (preindex>=0&&current<array[preindex]){
+            while (preindex>=0&&current>array[preindex]){
                //将preIndex值后移
                 array[preindex+1] = array[preindex];
                //将preIndex前移

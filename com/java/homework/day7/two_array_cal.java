@@ -22,18 +22,14 @@ public class two_array_cal {
 
 
 
-        int[] newarr = {89, 40, 99, 61, 100};
-        for (int i = 0; i < newarr.length - 1; i++) {
-            for (int j = 0; j < newarr.length - 1 - i; j++) {
-                if (newarr[j] < newarr[j + 1]) {
-                    int tem = newarr[j];
-                    newarr[j] = newarr[j + 1];
-                    newarr[j + 1] = tem;
-
-                    int[] sco = scores[j];
+        for (int i = 0; i < scores.length - 1; i++) {
+            for (int j = 0; j < scores.length - 1 - i; j++) {
+                if (scores[j][1] < scores[j + 1][1]) {
+                    //交换数组排序
+                    int []tem = scores[j];
                     scores[j] = scores[j + 1];
-                    scores[j + 1] = sco;
-
+                    scores[j + 1] = tem;
+                    //同时交换另一个数组排序
                     String nam = names[j];
                     names[j] = names[j+1];
                     names[j+1] = nam;
