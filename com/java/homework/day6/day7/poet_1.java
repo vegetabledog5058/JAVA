@@ -1,4 +1,4 @@
-package com.java.homework.day7;
+package com.java.homework.day6.day7;
 
 /**
  * @author SiYi
@@ -15,7 +15,7 @@ public class poet_1 {
                 {'低','头','思','故','乡'}
         };
         //p1(arr);
-        //p2(arr);
+        p2(arr);
         //p3(arr);
 
     }
@@ -27,7 +27,7 @@ public class poet_1 {
     }
     public static void p2(char arr[][]){
 
-        for (int i = 0; i < arr[0].length; i++) {
+        for (int i = 0; i < arr[i].length; i++) {
             for ( int j = arr.length-1; j >=0; j--) {
                 System.out.print(arr[j][i]+"\t");
             }

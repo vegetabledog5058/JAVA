@@ -1,4 +1,4 @@
-package com.java.homework.day7;
+package com.java.homework.day6.day7;
 
 import com.java.homework.day2.tri;
 
