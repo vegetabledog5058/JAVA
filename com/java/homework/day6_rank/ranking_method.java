@@ -16,11 +16,11 @@ public class ranking_method {
         Scanner sc = new Scanner(System.in);
         select();
         insert();
-        maopao();
+        bubble();
 
 
     }
-    public static void maopao(){
+    public static void bubble(){
         int arr[] ={3,5,2,8,9,6};
         for (int i = 0; i < arr.length-1; i++) {
             for (int j = 0; j < arr.length-1-i ; j++) {

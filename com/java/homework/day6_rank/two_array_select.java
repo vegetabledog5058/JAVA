@@ -20,10 +20,8 @@ public class two_array_select {
             for (int j = 0; j < scores[i].length-1; j++) {
                 int min =j;
                 for (int k = j+1; k < scores[i].length; k++) {
-
                     if(scores[i][k]<scores[i][min]){
                         min = k;
-
                     }
 
                 }

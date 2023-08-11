@@ -8,7 +8,7 @@ import java.util.Arrays;
  * @date 2023/8/10 19:26
  * @desciption: 二维数组排序
  */
-public class two_array_rank {
+public class two_array_maopao {
     public static void main(String[] args) {
         int[][] scores = {
                 {78, 89, 93}, // 260
