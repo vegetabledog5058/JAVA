@@ -16,8 +16,10 @@ public class test {
         System.out.println(a[0]);
     }
     public static void test(int a[]){
+
         a= new int[]{4};
         a[0] = 6;
+
 
 
     }

@@ -15,7 +15,7 @@ public class feibo {
         int q = 1;
         int h = 1;
         int i = 0;
-        while (n != 0) {
+        while (n !=0) {
             if (i < 2) {
                 System.out.println(1);
                 n--;
@@ -28,7 +28,10 @@ public class feibo {
                     System.out.println(i);
                     n--;
                 }
+
             }
+
+            //n必须在上述两者条件满足其一再减
             i++;
 
         }

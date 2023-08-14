@@ -1,4 +1,4 @@
-package com.java.homework.day6;
+package com.java.homework.day6_rank.day6;
 
 import java.util.Arrays;
 

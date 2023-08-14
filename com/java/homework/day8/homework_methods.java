@@ -93,11 +93,14 @@ public class homework_methods {
     public static int[] leftMove(int arr[],int k){
         int newarr[] = new int[arr.length];
         //左移几位从索引下一位开始复制,索引+1=k也就是k位开始复制
-        System.arraycopy(arr,k,newarr,0,arr.length-k);
-        //带入具体值计算
+        if(k<= arr.length) {
+            System.arraycopy(arr, k, newarr, 0, arr.length - k);
+            //带入具体值计算
+            System.arraycopy(arr, 0, newarr, arr.length - k, k);
 
-        System.arraycopy(arr,0,newarr,arr.length-k,k);
-        return newarr;
+        }else {
+            return null;
+        }return newarr;
     }
 
 }

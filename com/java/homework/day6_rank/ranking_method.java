@@ -14,8 +14,8 @@ import java.util.Scanner;
 public class ranking_method {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        select();
-        insert();
+       // select();
+       //insert();
         bubble();
 
 
@@ -40,7 +40,7 @@ public class ranking_method {
         for (int i = 1; i < arr.length ; i++) {
             int current = arr[i];
             int preIdex = i - 1;
-            while (preIdex >= 0 && current < arr[preIdex]) {
+            while (preIdex >= 0 && current > arr[preIdex]) {
                 arr[preIdex + 1] = arr[preIdex];
                 preIdex--;
             }

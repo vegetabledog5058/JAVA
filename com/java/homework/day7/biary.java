@@ -15,10 +15,14 @@ public class biary {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int[]arr = {1,2,3,4,5,6};
-        int left =0;
-        int right = arr.length-1;
+        int index = binary(arr,n);
+        System.out.println(index);
+    }
+    public static int binary(int arr[],int n) {
+        int left = 0;
+        int right = arr.length - 1;
         int index = -1;
-        while (left<=right) {
+        while (left <= right) {
             int middle = (left + right) >> 1;
             if (arr[middle] == n) {
                 index = middle;
@@ -29,6 +33,6 @@ public class biary {
                 left = middle + 1;
             }
         }
-        System.out.println(index);
+    return index;
     }
 }
