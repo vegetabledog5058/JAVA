@@ -8,7 +8,7 @@ import java.util.Scanner;
  * @date 2023/8/13 23:05
  * @desciption: 兔子问题
  */
-public class rabbit {
+public class q1_rabbit {
     public static void main(String[] args) {
        /* 题目：古典问题：有一对兔子，从出生后第3个月起每个月都生一对兔子，
         小兔子长到第三个月后每个月又生一对兔子，
@@ -21,9 +21,9 @@ public class rabbit {
         int hou = 1;
         for (int i = 1; i <= m; i++) {
             if(i<=2){
-                System.out.println(hou);
+                System.out.println(2*hou);
             }else {
-                System.out.println((qian+hou));
+                System.out.println(2*(qian+hou));
                 int tem = qian;
                 qian = hou;
                 hou = (tem + qian);
