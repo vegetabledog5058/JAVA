@@ -104,7 +104,6 @@ public class Library {
             default -> exit();
 
         }
-
     }
 
 
@@ -113,4 +112,8 @@ public class Library {
         System.exit(0);
     }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }
