@@ -17,18 +17,37 @@ public class MovieTheater {
     static User user = new User();
     static Menu menu = new Menu();
     private User status;
+    private Integer deleteIndex;
 
     static int mvcount = 0;
     static int uscount = 0;
 
     {
-        for (int i = 0; i < 2; i++) {
-            addmovie_add(new Movie("泰坦尼克号", 200.0, "不知道", 21));
 
-        }
+            addmovie_add(new Movie("泰坦尼克号", 200.0, "james", 2011));
+            addmovie_add(new Movie("星球大战", 900.0, "喜羊羊", 2007));
+            addmovie_add(new Movie("绿皮书", 300.0, "双面龟", 2009));
+            addmovie_add(new Movie("霸王别姬", 666.0, "张国荣", 2004));
+            addmovie_add(new Movie("盗梦空间", 999.0, "玛卡巴卡", 2002));
+        sort_Movies();
+
+
         adduser(new User("admin","13109315251","admin",1));
     }
 
+    //排序
+    private  void sort_Movies(){
+        for (int i = 0; i < mvcount; i++) {
+            for (int j = 0; j < mvcount-i-1 ; j++) {
+                if(movies[j].getDate()<movies[j+1].getDate()){
+                Movie tem = movies[j];
+                movies[j] = movies[j+1];
+                movies[j+1] = tem;
+                }
+            }
+
+        }
+    }
     //添加电影
     public void addmovie_input() {
         System.out.println("请输入电影名称(String)");
@@ -65,6 +84,7 @@ public class MovieTheater {
         String input = sc.next();
         boolean result = deletemovie(input);
         if (result) {
+            movieFill();
             System.out.println("删除成功");
         } else {
             System.out.println("删除失败,不存在此电影");
@@ -75,11 +95,21 @@ public class MovieTheater {
     private boolean deletemovie(String name) {
         for (int i = 0; i < mvcount; i++) {
             if (name.equals(movies[i].getName())) {
+                deleteIndex = i;
                 movies[i] = null;
                 return true;
+
             }
         }
         return false;
+    }
+    //删除电影后数组的填充
+    private void movieFill(){
+        Movie newmovies[] = new Movie[movies.length-1];
+        System.arraycopy(movies,0,newmovies,0, deleteIndex);
+        System.arraycopy(movies,deleteIndex+1,newmovies,deleteIndex, movies.length-deleteIndex-1);
+        movies = newmovies;
+
     }
 
     //修改电影
@@ -154,9 +184,11 @@ public class MovieTheater {
 
     //查询全部电影
     public void function_showallmovies() {
+        sort_Movies();
         for (int i = 0; i < mvcount; i++) {
+            if(movies[i]!=null){
             System.out.println("第"+(i+1)+"个电影");
-            System.out.println(movies[i].toString());
+            System.out.println(movies[i].toString());}
         }
         menu.showmenu();
     }
@@ -211,7 +243,6 @@ public class MovieTheater {
         String username = sc.next();
         status.setUsername(username);
         user.function_user();
-
     }
     private void upphone(){
         System.out.println("输入您的新电话");
@@ -237,10 +268,14 @@ public class MovieTheater {
         for (int i = 0; i <uscount; i++) {
             if(users[i].getRole()==2){
                 System.out.println(users[i].toString());
+            }else {
+                System.out.println("暂无用户");
             }
         }
         user.function_admin();
     }
+
+
 
 
 
