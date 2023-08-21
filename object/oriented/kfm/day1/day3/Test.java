@@ -1,4 +1,4 @@
-package object.oriented.kfm.day3;
+package object.oriented.kfm.day1.day3;
 
 /**
  * @author SiYi

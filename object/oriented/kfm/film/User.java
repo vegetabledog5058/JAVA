@@ -15,10 +15,20 @@ public class User {
     private String password;
     private Integer role;
     private User status;
-    static Scanner sc = new Scanner(System.in);
-    static MovieTheater movieTheater = new MovieTheater();
-    static Menu menu = new Menu();
 
+    private static Scanner sc = new Scanner(System.in);
+    private static MovieTheater movieTheater = new MovieTheater();
+    private static Menu menu = new Menu();
+
+
+
+
+    public User() {
+
+    }
+    public User(String username, String phone, String password) {
+        this(username,phone,password,2);
+    }
 
     public User(String username, String phone, String password, Integer role) {
         this.username = username;
@@ -59,8 +69,7 @@ public class User {
         this.role = role;
     }
 
-    public User() {
-    }
+
 
     //开始菜单
     public void startmenu(int input) {

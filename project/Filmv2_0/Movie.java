@@ -1,13 +1,10 @@
-package object.oriented.kfm.film;
-
-import java.util.Date;
-import java.util.Scanner;
+package project.Filmv2_0;
 
 /**
  * @author SiYi
  * @version 1.0
- * @date 2023/8/18 21:21
- * @desciption: 电影类
+ * @date 2023/8/21 21:00
+ * @desciption:
  */
 public class Movie {
     private String name;
@@ -20,13 +17,12 @@ public class Movie {
     }
 
 
-
-    public Movie(String name, Double price, String director, Integer date,Integer ticketCount) {
+    public Movie(String name, Double price, String director, Integer date, Integer ticketCount) {
         this.name = name;
         this.price = price;
         this.director = director;
         this.date = date;
-        this.ticketCount = ticketCount;
+        ticketCount = ticketCount;
 
     }
 
