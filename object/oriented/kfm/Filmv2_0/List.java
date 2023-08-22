@@ -1,4 +1,4 @@
-package project.Filmv2_0;
+package object.oriented.kfm.Filmv2_0;
 
 import java.util.Arrays;
 
@@ -12,11 +12,12 @@ public class List {
     private Object[] arr;
     // 元素个数
     private int count;
-    Movie movie = new Movie();
+    private final int initial = 10;
+
 
 
     public List() {
-        this(0);
+        this(10);
     }
 
     public List(int initial) {
@@ -27,9 +28,15 @@ public class List {
     //添加元素
     public void add(Object obj) {
         if (count + 1 > arr.length) {
-            arr = Arrays.copyOf(arr, arr.length + 1);
+
+            grow();
         }
         arr[count++] = obj;
+    }
+
+    private void grow() {
+        arr = Arrays.copyOf(arr, arr.length * 2);
+
     }
 
     //返回整个数组
@@ -41,22 +48,41 @@ public class List {
     //删除元素
     public void delete(int index) {
         if (index >= 0 && index < count) {
-            Object[] newarr = new Object[arr.length - 1];
-            System.arraycopy(arr, 0, newarr, 0, index);
-            System.arraycopy(arr, index + 1, newarr, index, arr.length - index - 1);
-            arr = newarr;
-            count--;
+            System.arraycopy(arr, index + 1, arr, index, arr.length - index - 1);
+            arr[--count] = null;
         }
 
 
     }
 
+    public boolean delete(Object obj) {
+        for (int i = 0; i < arr.length; i++) {
+            if (obj == null) {
+                if (obj == arr[i]) {
+                    delete(i);
+                    return true;
+                }
+            } else {
+                if (obj.equals(arr[i])) {
+                    delete(i);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     // 获取元素
     public User getUser(int index) {
-        return (User)arr[index];
+        return (User) arr[index];
     }
+
     public Movie getMovie(int index) {
         return (Movie) arr[index];
+    }
+
+    public Tickets getTickets(int index) {
+        return (Tickets) arr[index];
     }
 
     // 返回数组某个值
@@ -73,6 +99,10 @@ public class List {
         return count;
     }
 
+    //排序
+    public void Moviesort() {
+
+    }
 
 
 }
