@@ -1,4 +1,4 @@
-package project.Filmv2_0;
+package object.oriented.kfm.Filmv2_0;
 
 import java.util.Scanner;
 
@@ -12,17 +12,19 @@ public class Cinema {
 
     private List users = new List();
     private List movies = new List();
+
+
     {
-    addmovie_add(new Movie("泰坦尼克号", 200.0, "james", 2011,100));
-    addmovie_add(new Movie("星球大战", 900.0, "喜羊羊", 2007,50));
-    addmovie_add(new Movie("绿皮书", 300.0, "双面龟", 2009,30));
-    addmovie_add(new Movie("霸王别姬", 666.0, "张国荣", 2004,60));
-    addmovie_add(new Movie("盗梦空间", 999.0, "玛卡巴卡", 2002,80));
-    //sort_Movies();
+        addmovie_add(new Movie("泰坦尼克号", 200.0, "james", 2011, 100));
+        addmovie_add(new Movie("星球大战", 900.0, "喜羊羊", 2007, 50));
+        addmovie_add(new Movie("绿皮书", 300.0, "双面龟", 2009, 30));
+        addmovie_add(new Movie("霸王别姬", 666.0, "张国荣", 2004, 60));
+        addmovie_add(new Movie("盗梦空间", 999.0, "玛卡巴卡", 2002, 80));
+        //sort_Movies();
 
 
-    adduser(new User("admin", "13109315251", "admin", 1));
-}
+        adduser(new User("admin", "13109315251", "admin", 1));
+    }
 
     //开始菜单
     public void showmenu() {
@@ -55,7 +57,9 @@ public class Cinema {
     public void function_user() {
         System.out.println("1. 修改用户信息");
         System.out.println("2. 查询用户信息");
-        System.out.println("3. 退出登录");
+        System.out.println("3. 购买电影票");
+        System.out.println("4. 查询电影票");
+        System.out.println("5. 退出登录");
         int input = sc.nextInt();
         user_home(input);
     }
@@ -64,6 +68,8 @@ public class Cinema {
         switch (input) {
             case 1 -> function_updateuser();
             case 2 -> function_selectuser();
+            case 3 -> buyTicket();
+            case 4 -> showTickets();
             default -> exit_login();
         }
     }
@@ -72,7 +78,7 @@ public class Cinema {
     public void function_admin() {
         System.out.println("1. 新增电影");
         System.out.println("2. 删除电影（输入电影名称，删除对应电影）");
-        System.out.println("3.  修改电影（输入电影名称，展示电影信息，选择要修改的内容（价格/上映时\n" +
+        System.out.println("3. 修改电影（输入电影名称，展示电影信息，选择要修改的内容（价格/上映时" +
                 "间），输入内容，修改已存储的电影信息）");
         System.out.println("4. 查看所有用户信息");
         System.out.println("5. 退出登录");
@@ -105,6 +111,62 @@ public class Cinema {
     //查询用户信息
     private void function_selectuser() {
         select_user(status);
+    }
+
+    public Movie function_searchmovie(String name) {
+        Movie searchmovie = searchmovie(name);
+        if (searchmovie == null) {
+            System.out.println("没有这个电影");
+        } else {
+            return searchmovie;
+        }
+        return null;
+
+    }
+
+    //购买电影票
+    private void buyTicket() {
+        showallmovies();
+        Movie movie = null;
+        do {
+            if (movie != null) {
+                System.out.println("请重新选择");
+            }
+            System.out.println("请输入要买的电影名称：");
+            String name = sc.next();
+            movie = function_searchmovie(name);
+
+
+        } while (!(movie.getTicketCount() > 0));
+
+
+        Integer count = null;
+        do {
+            if (count != null) {
+                System.out.println("输入错误");
+            }
+            System.out.println("请输入购买数量：");
+            count = sc.nextInt();
+        } while (!(count > 0 && count <= movie.getTicketCount()));
+
+        Tickets ticket = new Tickets(movie, count);
+        double money = movie.getPrice() * count;
+        System.out.println(count + "张" + movie.getName() + "票，共计 " + money + "元，请支付。");
+
+        // 添加票
+        status.addTicket(ticket);
+
+        // 变电影票数量
+        movie.setTicketCount(movie.getTicketCount() - count);
+
+        System.out.println("购票成功");
+        function_user();
+    }
+
+    //查询电影票
+    private void showTickets() {
+        status.showTickets();
+        function_user();
     }
 
     //退出系统
@@ -151,7 +213,7 @@ public class Cinema {
     //管理员密码验证验证以及传递用户对象
     private User confirm_admin(String name, String password) {
         for (int i = 0; i < users.length(); i++) {
-            if (users.getUser(i).getRole() == 1){
+            if (users.getUser(i).getRole() == 1) {
                 if (name.equals(users.getUser(i).getUsername())) {
                     if (password.equals(users.getUser(i).getPassword())) {
                         status = users.getUser(i);
@@ -220,6 +282,7 @@ public class Cinema {
         Integer ticketCount = sc.nextInt();
         Movie movie = new Movie(name, price, director, date, ticketCount);
         addmovie_add(movie);
+        System.out.println("添加成功");
         function_admin();
     }
     //添加电影
@@ -255,8 +318,6 @@ public class Cinema {
         }
         return false;
     }
-
-    //删除电影后数组的向前填充
 
 
     //修改电影
@@ -330,15 +391,19 @@ public class Cinema {
     }
 
     //查询全部电影
-    public void function_showallmovies() {
+    private void function_showallmovies() {
         //sort_Movies();
+        showallmovies();
+        showmenu();
+    }
+
+    private void showallmovies() {
         for (int i = 0; i < movies.length(); i++) {
             if (movies.getMovie(i) != null) {
                 System.out.println("第" + (i + 1) + "个电影");
                 System.out.println(movies.getMovie(i).toString());
             }
         }
-        showmenu();
     }
 
     //--------------------------------
