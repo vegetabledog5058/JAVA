@@ -14,13 +14,54 @@ package LeetCode;
  */
 public class p2 {
     public static void main(String[] args) {
+        String s = "abcd", t = "abcde";
+        char target = findDiffenence3(s, t);
+        System.out.println(target);
 
     }
 
-    class Solution {
-//        public char findTheDifference(String s, String t) {
-//
-//
-//        }
+
+    public static char findTheDifference(String s, String t) {
+
+        int arr[] = new int[26];
+        for (int i = 0; i < s.length(); i++) {
+            char as = s.charAt(i);
+            arr[as - 'a']++;
+
+        }
+        for (int i = 0; i < t.length(); i++) {
+            char at = t.charAt(i);
+            arr[at - 'a']--;
+            if (arr[at - 'a'] < 0) {
+                return at;
+            }
+
+        }
+        return ' ';
+    }
+
+    //通过ASCII码差值寻找
+    public static char findDiffenence2(String s, String t) {
+        int sum1 = 0;
+        int sum2 = 0;
+        for (int i = 0; i < s.length(); i++) {
+            char tem = s.charAt(i);
+            sum1 += tem;
+        }
+        for (int i = 0; i < t.length(); i++) {
+            char tem = t.charAt(i);
+            sum2 += tem;
+        }
+        return (char) (sum2 - sum1);
+    }
+
+    public static char findDiffenence3(String s, String t) {
+        int a = 0;
+        String str = s+t;
+        for (int i = 0; i < str.length(); i++) {
+            char tem = str.charAt(i);
+            a = a ^ tem;
+        }
+        return (char) a;
     }
 }

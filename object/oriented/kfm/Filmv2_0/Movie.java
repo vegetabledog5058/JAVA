@@ -1,4 +1,4 @@
-package project.Filmv2_0;
+package object.oriented.kfm.Filmv2_0;
 
 /**
  * @author SiYi
@@ -22,7 +22,7 @@ public class Movie {
         this.price = price;
         this.director = director;
         this.date = date;
-        ticketCount = ticketCount;
+        this.ticketCount = ticketCount;
 
     }
 
@@ -68,6 +68,6 @@ public class Movie {
 
     @Override
     public String toString() {
-        return getName() + "\t" + getPrice() + "\t" + getDirector() + "\t" + getDate() + "\t";
+        return getName() + "\t" + getPrice() + "\t" + getDirector() + "\t" + getDate() + "\t"+getTicketCount() + "\t";
     }
 }
