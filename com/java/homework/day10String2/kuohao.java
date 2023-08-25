@@ -12,7 +12,7 @@ public class kuohao {
     public static void main(String[] args) {
         System.out.println('(' + 0);
         System.out.println(')'-'(');
-        String x = "())(()";
+        String x = "(())())";
         System.out.println(kkk(x));
     }
 

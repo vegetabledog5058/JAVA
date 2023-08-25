@@ -15,7 +15,7 @@ import java.util.Random;
  */
 public class password {
     public static void main(String[] args) {
-        String password ="";
+    /*    String password ="";
        outer: while(true){
             password = getpassword();
             for (int i = 0; i < password.length(); i++) {
@@ -29,7 +29,9 @@ public class password {
             }
 
         }
-        System.out.println(password);
+        System.out.println(password);*/
+        //-------------------------
+        disrepeat();
     }
 
     public static String getpassword() {
@@ -88,4 +90,31 @@ public class password {
         }
         return result;
     }
-}
+    public static void disrepeat(){
+        /*
+        正则表达式
+            ^[a-zA-Z0-9_-]+@.+.com$
+            ^1[0-9]{10}$
+
+            密码  6位以上， 包含 数字 字母 _
+         */
+                String str = "1085473391@qq.com";
+                String reg = "^[a-zA-Z0-9_-]+@.+.com$";
+
+                String reg1 = "\\d";
+                boolean result = str.matches(reg);
+
+                String s = str.replaceAll(reg1, "*");
+                System.out.println(result);
+                System.out.println(s);
+
+                str = "12345a";
+                System.out.println(str.replaceFirst("\\d+", "*"));
+
+                s = "123456";
+                String reg2 = "\\d{3,5}";
+                System.out.println(s.replace(reg2,"*"));
+
+            }
+        }
+

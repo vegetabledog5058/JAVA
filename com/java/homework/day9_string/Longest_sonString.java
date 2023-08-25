@@ -16,6 +16,26 @@ public class Longest_sonString {
 
     }
 
+    public static String baolipojie(String str) {
+        String max = "";
+        for (int start = 0; start < str.length(); start++) {
+            String sub = str.substring(start, start + 1);
+            for (int end = start + 1; end < str.length(); end++) {
+                String current = str.substring(end, end + 1);
+
+                if (sub.contains(current)) {
+                    if (sub.length() > max.length()) {
+                        max = sub;
+                    }
+                    break;
+                } else {
+                    sub += current;
+                }
+            }
+        }
+        return max;
+    }
+
     public static String subString1(String str) {
         String max = "";
         int start = 0;
