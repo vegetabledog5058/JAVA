@@ -17,7 +17,12 @@ public class Test_Date {
         String s = "af";
         boolean flag = 0==s.indexOf('a');
         System.out.println(flag);
-
+        int b = (2<<30)-1;
+        int c = 2<<1;
+        int d = 2<<2;
+        System.out.println(b);
+        System.out.println(c);
+        System.out.println(d);
     }
 
 }
