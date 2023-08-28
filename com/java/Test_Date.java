@@ -14,6 +14,9 @@ public class Test_Date {
         LocalDateTime ldt = LocalDateTime.now();
         int a = ldt.getYear();
         System.out.println(a);
+        String s = "af";
+        boolean flag = 0==s.indexOf('a');
+        System.out.println(flag);
 
     }
 

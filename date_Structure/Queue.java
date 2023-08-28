@@ -8,7 +8,7 @@ import java.util.Arrays;
  * @date 2023/8/27 15:31
  * @desciption: 队列
  */
-public class queue {
+public class Queue {
 
     Object queue[] = new Object[10];
     int length = 0;
@@ -95,7 +95,7 @@ public int size(){
     public boolean equals(Object obj ){
     if(obj==null)return false;
     if (this == obj)return true;
-    if(obj instanceof queue queues){
+    if(obj instanceof Queue queues){
         return Arrays.equals(queue, queues.queue) &&
                 length == queues.length;
     }

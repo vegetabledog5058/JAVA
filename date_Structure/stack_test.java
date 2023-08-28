@@ -15,7 +15,7 @@ public class stack_test {
         System.out.println(test.toString());
         test.pop();
         System.out.println(test.toString());
-        System.out.println(test.index);
+       // System.out.println(test.index);
         test.push(4);
         System.out.println(test.toString());
 

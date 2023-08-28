@@ -9,9 +9,22 @@ import java.util.Arrays;
  * @desciption: 栈
  */
 public class Stack {
-    Object stack[] = new Object[10];
+    private Object stack[];
     //元素下一个存放的索引(元素数量)
-    int index = 0;
+    private int index = 0;
+    private static final int default_value = 10;
+
+    public Stack() {
+        this(default_value);
+    }
+
+    public Stack(int length) {
+        if (length < 0) {
+            length = default_value;
+        }
+        stack = new Object[length];
+    }
+
 
     /**
      * 将元素压入栈顶
@@ -94,16 +107,16 @@ public class Stack {
     }
 
 
-
     @Override
     public String toString() {
         return Arrays.toString(stack);
     }
+
     @Override
-    public boolean equals(Object obj ){
-        if(obj==null)return false;
-        if (this == obj)return true;
-        if(obj instanceof Stack stack){
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        if (this == obj) return true;
+        if (obj instanceof Stack stack) {
             return true;
         }
         return false;

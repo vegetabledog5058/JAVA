@@ -9,7 +9,7 @@ package date_Structure;
 public class queue_test {
     public static void main(String[] args) {
 
-        queue test = new queue();
+        Queue test = new Queue();
         test.enqueue(1);
         test.enqueue(2);
         test.enqueue(3);
