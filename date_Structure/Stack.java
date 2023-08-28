@@ -53,7 +53,13 @@ public class Stack {
     }
 
     private void grow() {
-        stack = Arrays.copyOf(stack, 2 * stack.length);
+        int oldcapacity = stack.length;
+        int newcapacity = oldcapacity <<1;
+        //确认新容量比旧容量大
+        if(newcapacity<oldcapacity){
+            newcapacity = Integer.MAX_VALUE;
+        }
+        stack = Arrays.copyOf(stack, newcapacity);
     }
 
     /**
