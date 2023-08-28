@@ -20,7 +20,7 @@ public class Test_Date {
         int b = (2<<30)-1;
         int c = 2<<1;
         int d = 2<<2;
-        System.out.println(b);
+        //System.out.println(b);
         System.out.println(c);
         System.out.println(d);
     }
