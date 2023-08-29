@@ -11,7 +11,7 @@ import java.util.*;
  */
 public class Mylist implements List {
 
-    private int size;
+    private  int size;
     private int increment;
     private Object value[];
     private static final int default_size = 12;
@@ -55,25 +55,22 @@ public class Mylist implements List {
         else return true;
     }
 
-    @Override
-    public Iterator iterator() {
-        return null;
-    }
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        return Arrays.copyOf(value, size);
     }
 
     @Override
     public Object[] toArray(Object[] a) {
-        return new Object[0];
+        return Arrays.copyOf(a, a.length);
     }
 
     @Override
     public boolean add(Object o) {
         grow(size + 1);
         value[size] = o;
+        size++;
         return true;
     }
 
@@ -91,6 +88,14 @@ public class Mylist implements List {
 
     @Override
     public boolean remove(Object o) {
+        for (int i = 0; i < size; i++) {
+            if (o == null && value[i] == null) return true;
+            if (value[i].equals(o)) {
+                System.arraycopy(value,i+1,value,i,size-i);
+                value[--size] = null;
+                return true;
+            }
+        }
         return false;
     }
 
@@ -121,34 +126,71 @@ public class Mylist implements List {
 
     @Override
     public void clear() {
-
+        value = new Mylist[]{};
     }
 
     @Override
     public Object get(int index) {
-        return null;
+        if (index >= 0 && index < size) return value[index];
+        else return null;
     }
 
     @Override
     public Object set(int index, Object element) {
-        return null;
+        Object tem = value[index];
+        value[index] = element;
+        return tem;
     }
 
     @Override
     public void add(int index, Object element) {
+        if(index>=0&&index<=size()){
+            System.arraycopy(value,index,value,index+1,size()-index);
+            value[index]=element;
+            size++;
+        }
 
 
+    }
+
+    @Override
+    public List subList(int fromIndex, int toIndex) {
+        //可以用数组进行最后用list of()将数组转换为列表返回,也可以此种做法
+        int length = toIndex-fromIndex;
+        Mylist tem= new Mylist(length);
+        for (int i = fromIndex; i < toIndex; i++) {
+            tem.add(value[i]);
+        }
+
+
+        return tem;
     }
 
 
     @Override
     public Object remove(int index) {
+        if (index < size() && index >= 0) {
+            Object tem = value[index];
+            System.arraycopy(value,index+1,value,index,size-index);
+            value[--size] = null;
+            return tem;
+        }
         return null;
     }
 
     @Override
     public int indexOf(Object o) {
-        for (int i = 0; i < value.length; i++) {
+        for (int i = 0; i < size; i++) {
+            if (o == null && value[i] == null) return i;
+            else if (value[i].equals(o)) return i;
+        }
+        return -1;
+    }
+
+
+    @Override
+    public int lastIndexOf(Object o) {
+        for (int i = size() - 1; i > 0; i--) {
             if (o == null && value[i] == null) return i;
             else if (value[i].equals(o)) return i;
         }
@@ -156,8 +198,8 @@ public class Mylist implements List {
     }
 
     @Override
-    public int lastIndexOf(Object o) {
-        return 0;
+    public Iterator iterator() {
+        return null;
     }
 
     @Override
@@ -171,7 +213,7 @@ public class Mylist implements List {
     }
 
     @Override
-    public List subList(int fromIndex, int toIndex) {
-        return null;
+    public String toString() {
+        return Arrays.toString(value);
     }
 }
