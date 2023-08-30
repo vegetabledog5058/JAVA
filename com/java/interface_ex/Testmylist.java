@@ -22,7 +22,7 @@ public class Testmylist {
         System.out.println(list.toString());
         list.remove(2);
         System.out.println(list.toString());
-        //List tem = list.subList(2,3);
+        List tem = list.subList(2,3);
         //System.out.println(tem.toString());
         //System.out.println(tem.size());
         System.out.println(list.toString());

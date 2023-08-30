@@ -51,8 +51,7 @@ public class Mylist implements List {
 
     @Override
     public boolean contains(Object o) {
-        if (indexOf(o) == -1) return false;
-        else return true;
+       return indexOf(0)!=-1;
     }
 
 
