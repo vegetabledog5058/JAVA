@@ -17,15 +17,20 @@ public class Linktest {
         linked.add("c");
         linked.add("d");
         linked.add("c");
-        Linked newlink = (Linked) linked.subList(0,5);
-        System.out.println(newlink.toString());
-        linked.add(0,"f");
-        linked.add(5,"g");
-        linked.add(3,"x");
+//        Linked newlink = (Linked) linked.subList(0,5);
+//        System.out.println(newlink.toString());
+
         System.out.println(linked.size());
-
         System.out.println(linked.toString());
-
+        linked.add(0,"z");
+        System.out.println(linked.toString());
+        System.out.println("========remove");
+        linked.remove(0);
+        System.out.println(linked.toString());
+        linked.remove(4);
+        System.out.println(linked.toString());
+        linked.remove(1);
+        System.out.println(linked.toString());
         System.out.println("最后一个索引是"+linked.lastIndexOf("c"));
         System.out.println("第一个索引是"+linked.indexOf("c"));
 

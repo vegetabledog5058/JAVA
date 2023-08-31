@@ -136,14 +136,16 @@ public class Linked implements List {
     public Object set(int index, Object element) {
         Node current = new Node(element, null);
         Node pointer = first;
+        Object old = null;
         if (first != null && index >= 0 && index < size) {
             for (int i = index; i > 0; i--) {
                 pointer = pointer.next;
             }
+            old = pointer;
             pointer.value = element;
 
         }
-        return null;
+        return old;
 //        while(pointer!=null){
 ////            pointer=pointer.next;
 //            if (index!=2){
@@ -169,16 +171,12 @@ public class Linked implements List {
                 //新加元素为头节点
                 current.next = first;
                 first = current;
-            } else {
-                while (pointer.next != null) {
-                    pointer = pointer.next;
-                    index--;
-                    if (index == 1) {
-                        current.next = pointer.next;
-                        pointer.next = current;
-                    }
-                }
-                if (index == size) {
+            }
+            while (pointer.next != null) {
+                pointer = pointer.next;
+                index--;
+                if (index == 1) {
+                    current.next = pointer.next;
                     pointer.next = current;
                 }
             }
@@ -189,26 +187,25 @@ public class Linked implements List {
     @Override
     public Object remove(int index) {
         Node pointer = first;
-        if (size < 0 || index < 0 || index > size + 1) {
+        if (size < 0 || index < 0 || index >= size) {
             return null;
         }
-        if(index==0){
+        if (index == 0) {
             first = first.next;
-        }else {
-            while (pointer!=null){
-                pointer = pointer.next;
-                index--;
-                if(index==1&&pointer.next.next!=null){
-                    pointer.next=pointer.next.next;
-                }else {
+        }
+        while (index > 0) {
+            if (index == 1) {
+                if (pointer.next != null) {
+                    pointer.next = pointer.next.next;
+                } else {
                     pointer.next = null;
                 }
-
-
             }
+            pointer = pointer.next;
+            index--;
         }
 
-
+        size--;
         return null;
     }
 
