@@ -45,7 +45,7 @@ public class Linked implements List {
             array[i++] = pointer;
             pointer = pointer.next;
         }
-        array[i] = pointer;
+
         return array;
         //返回数组
     }
@@ -163,20 +163,51 @@ public class Linked implements List {
     public void add(int index, Object element) {
         Node current = new Node(element, null);
         Node pointer = first;
-        while (){}
-        if (index == 0) {
-            //新加元素为头节点
-            current.next = first;
-            first = current;
-        } else if (index == size) {
-
-        } else {
+        //下标判断
+        if (index >= 0 && index <= size) {
+            if (index == 0) {
+                //新加元素为头节点
+                current.next = first;
+                first = current;
+            } else {
+                while (pointer.next != null) {
+                    pointer = pointer.next;
+                    index--;
+                    if (index == 1) {
+                        current.next = pointer.next;
+                        pointer.next = current;
+                    }
+                }
+                if (index == size) {
+                    pointer.next = current;
+                }
+            }
+            size++;
         }
-
     }
 
     @Override
     public Object remove(int index) {
+        Node pointer = first;
+        if (size < 0 || index < 0 || index > size + 1) {
+            return null;
+        }
+        if(index==0){
+            first = first.next;
+        }else {
+            while (pointer!=null){
+                pointer = pointer.next;
+                index--;
+                if(index==1&&pointer.next.next!=null){
+                    pointer.next=pointer.next.next;
+                }else {
+                    pointer.next = null;
+                }
+
+
+            }
+        }
+
 
         return null;
     }
@@ -201,19 +232,20 @@ public class Linked implements List {
 
     @Override
     public int lastIndexOf(Object o) {
-        int index =-1;
+        int index = -1;
         Node pointer = first;
-        for (int i = 0; i <size; i++) {
-            if (pointer.value == null && o == pointer.value) {
+        for (int i = 0; i < size; i++) {
+            // if (pointer != null) {
+            if (pointer.value == null && o == null) {
                 index = i;
             } else if (pointer.value.equals(o)) {
                 index = i;
             }
             pointer = pointer.next;
         }
-        if(index!=-1){
+        if (index != -1) {
             return index;
-        }else return -1;
+        } else return -1;
 
     }
 
@@ -232,7 +264,7 @@ public class Linked implements List {
         Linked newlink = new Linked();
         Node pointer = first;
         for (int i = 0; i < toIndex; i++) {
-            if(i>=fromIndex){
+            if (i >= fromIndex) {
 
                 newlink.add(pointer.value);
             }
@@ -294,5 +326,26 @@ public class Linked implements List {
             this.value = value;
             this.next = next;
         }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj == null) {
+                return false;
+            }
+
+            if (obj == this) {
+                return true;
+            }
+
+            if (obj instanceof Node node) {
+                if (this.value == null) {
+                    return node.value == null;
+                } else {
+                    return value.equals(node.value);
+                }
+            }
+            return false;
+        }
+
     }
 }
