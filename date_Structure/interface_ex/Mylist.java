@@ -1,4 +1,4 @@
-package com.java.interface_ex;
+package date_Structure.interface_ex;
 
 
 import java.util.*;

@@ -1,6 +1,5 @@
-package com.java.interface_ex;
+package date_Structure.interface_ex;
 
-import java.sql.SQLOutput;
 import java.util.List;
 
 /**

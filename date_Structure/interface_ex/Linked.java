@@ -1,6 +1,4 @@
-package com.java.interface_ex;
-
-import org.w3c.dom.Node;
+package date_Structure.interface_ex;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -74,6 +72,22 @@ public class Linked implements List {
     @Override
     public boolean remove(Object o) {
         Node pointer = first;
+       /* if(size<0)return false;
+        Node current = new Node(o,null);
+        for (int i = 0; i < size; i++) {
+            if(!pointer.equals(current)){
+                pointer = pointer.next;
+            }else {
+                if(pointer.equals(current)){
+                    first = first.next;
+                }else {
+                    pointer.next = pointer.next.next;
+                }
+            }
+        }
+        return false;
+        size--;*/
+
         while (pointer != null) {
             //分为三种情况头尾中
             //头结点
@@ -187,9 +201,21 @@ public class Linked implements List {
     @Override
     public Object remove(int index) {
         Node pointer = first;
+        Object remove;
         if (size < 0 || index < 0 || index >= size) {
             return null;
         }
+        if (index == 0) {
+            remove = first;
+            first = first.next;
+        } else for (int i = 1; i < index; i++) {
+            pointer = pointer.next;
+        }
+        remove = pointer.next;
+        pointer.next = pointer.next.next;
+        size--;
+        return remove;
+       /*
         if (index == 0) {
             first = first.next;
         }
@@ -205,8 +231,8 @@ public class Linked implements List {
             index--;
         }
 
-        size--;
-        return null;
+        size--;*/
+        //  return remove;
     }
 
     @Override

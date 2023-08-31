@@ -1,7 +1,4 @@
-package com.java.interface_ex;
-
-import java.util.Arrays;
-import java.util.List;
+package date_Structure.interface_ex;
 
 /**
  * @author SiYi
@@ -27,13 +24,15 @@ public class Linktest {
         System.out.println("========remove");
         linked.remove(0);
         System.out.println(linked.toString());
-        linked.remove(4);
+        linked.remove(3);
         System.out.println(linked.toString());
+        linked.remove(1);
         linked.remove(1);
         System.out.println(linked.toString());
         System.out.println("最后一个索引是"+linked.lastIndexOf("c"));
         System.out.println("第一个索引是"+linked.indexOf("c"));
 
+        System.out.println(linked.remove("c"));
         System.out.println(linked.toString());
         System.out.println("-------");
 //        System.out.println(linked.size());
