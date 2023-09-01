@@ -91,6 +91,9 @@ public class DoubleLinked extends AbstractDoublelink {
 
     @Override
     public Object get(int index) {
+        if(index>=size||index<0){
+            throw new NullPointerException("越界");
+        }
         Node pointer = first;
         for (int i = index - 1; i >= 0; i--) {
             pointer = pointer.next;
@@ -274,3 +277,5 @@ public class DoubleLinked extends AbstractDoublelink {
         }
     }
 }
+
+

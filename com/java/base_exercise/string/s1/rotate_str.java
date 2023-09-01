@@ -1,4 +1,4 @@
-package com.java.string.s1;
+package com.java.base_exercise.string.s1;
 
 import java.util.Scanner;
 

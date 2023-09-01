@@ -24,6 +24,8 @@ public class Test_Date {
         System.out.println(c);
         System.out.println(d);
         System.out.println(5>>1);
+        String xx ="sssfha";
+        System.out.println(xx.lastIndexOf('a'));
     }
 
 }

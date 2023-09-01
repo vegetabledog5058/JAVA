@@ -1,4 +1,4 @@
-package com.java.string.day1;
+package com.java.base_exercise.string.day1;
 
 import java.util.Arrays;
 
