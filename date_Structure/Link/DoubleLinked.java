@@ -1,10 +1,5 @@
-package date_Structure.interface_ex;
+package date_Structure.Link;
 
-import org.w3c.dom.Node;
-
-import javax.swing.*;
-import java.awt.*;
-import java.util.Collection;
 import java.util.List;
 
 /**

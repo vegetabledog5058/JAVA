@@ -1,6 +1,4 @@
-package javaEx.plus.compare;
-
-import com.java.homework.day3.day3;
+package javaEx.plus.comparable;
 
 import java.util.Arrays;
 import java.util.Comparator;

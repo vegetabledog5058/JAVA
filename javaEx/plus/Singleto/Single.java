@@ -1,6 +1,4 @@
-package com.java.Singleto;
-
-import java.util.function.Predicate;
+package javaEx.plus.Singleto;
 
 /**
  * @author SiYi
