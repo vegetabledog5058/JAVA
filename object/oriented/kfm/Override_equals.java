@@ -4,7 +4,7 @@ package object.oriented.kfm;
  * @author SiYi
  * @version 1.0
  * @date 2023/8/22 19:21
- * @desciption:
+ * @desciption: equals重写
  */
 public class Override_equals {
     private String name;
