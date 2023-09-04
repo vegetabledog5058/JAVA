@@ -22,9 +22,9 @@ public class demo {
         };
 
 //匿名类
-//        Arrays.sort(stus, new Comparator<Student>() {
+//        Arrays.sort(stus, new Comparator<StudentList>() {
 //            @Override
-//            public int compare(Student o1, Student o2) {
+//            public int compare(StudentList o1, StudentList o2) {
 //
 //                if (o1.getAge() > o2.getAge()){
 //                   return 1;
@@ -91,7 +91,7 @@ public class demo {
 }
 class studentcomparetor implements Comparator{
     /**
-     * 比较两个 Student 对象的大小
+     * 比较两个 StudentList 对象的大小
      * @param o1 the first object to be compared.
      * @param o2 the second object to be compared.
      * @return
@@ -188,7 +188,7 @@ class Student implements Comparable, Cloneable {
 
     @Override
     public String toString() {
-        return "Student [name=" + name + ", age=" + age + ", score=" + score + "]";
+        return "StudentList [name=" + name + ", age=" + age + ", score=" + score + "]";
     }
 }
 

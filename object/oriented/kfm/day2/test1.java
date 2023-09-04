@@ -10,7 +10,7 @@ public class test1 {
     public class Main {
         public static void main(String[] args) {
           /* // change(10);
-            Student stu = new Student();
+            StudentList stu = new StudentList();
             change(stu);
             System.out.println(stu.getAge());*/
         }
@@ -20,7 +20,7 @@ public class test1 {
             // num++;
 
             // This method does not compile, so I'm commenting it out
-            // public static void change(final Student stu) {
+            // public static void change(final StudentList stu) {
             //     stu.setAge(28);
             // }
         }
