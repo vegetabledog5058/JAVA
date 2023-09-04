@@ -38,19 +38,19 @@ public class demo {
 //        });
 
         //lamda表达式(函数接口)
-        Arrays.sort(stus, (o1, o2) -> {
-            // 只比较年龄
-            if (o1.getAge() > o2.getAge()){
-                return 1;
-            } else if (o1.getAge() < o2.getAge()){
-                return -1;
-            } else {
-                return 0;
-            }
-
-        });
-//        sort(arr);
-        //sort(stus);
+//        Arrays.sort(stus, (o1, o2) -> {
+//            // 只比较年龄
+//            if (o1.getAge() > o2.getAge()){
+//                return 1;
+//            } else if (o1.getAge() < o2.getAge()){
+//                return -1;
+//            } else {
+//                return 0;
+//            }
+//
+//        });
+        //sort(arr);
+        sort(stus);
         // 遍历
         for (Student stu : stus) {
             System.out.println(stu);
