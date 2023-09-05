@@ -1,15 +1,19 @@
 package javaEx.plus.collection.homework.day0905;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * @author SiYi
  * @version 1.0
- * @date 2023/9/5 19:57
- * @desciption:## 交集计算
- * 有两个List集合, 计算两个集合的交集元素。
+ * @date 2023/9/5 20:25
+ * @desciption:## 差集运算
+ *
+ * 有两个List集合, 计算第一个集合对第二个集合的差集元素。
  */
-public class exercise2 {
+public class exercise3 {
     public static void main(String[] args) {
         List<String> list = new ArrayList<>();
         list.add("c");
@@ -21,17 +25,10 @@ public class exercise2 {
         list.add("b");
         Set<String> stringList = new TreeSet<>();
         stringList.add("a");
-        stringList.add("d");
+        stringList.add("b");
         stringList.add("c");
 
-
-//        String arr[] = stringList.toArray(new String[stringList.size()]);
-//        String array[] = stringList.toArray(arr);
-//        //System.out.println(Arrays.toString(arr));
-//        System.out.println(Arrays.toString(array));
-        list.retainAll(stringList);
+        list.removeAll(stringList);
         System.out.println(list);
-
-
     }
 }
