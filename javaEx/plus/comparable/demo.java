@@ -38,17 +38,21 @@ public class demo {
 //        });
 
         //lamda表达式(函数接口)
-//        Arrays.sort(stus, (o1, o2) -> {
-//            // 只比较年龄
-//            if (o1.getAge() > o2.getAge()){
-//                return 1;
-//            } else if (o1.getAge() < o2.getAge()){
-//                return -1;
-//            } else {
-//                return 0;
-//            }
-//
-//        });
+        Arrays.sort(stus, (o1, o2) -> {
+            // 只比较年龄
+            if (o1.getAge() > o2.getAge()){
+                return 1;
+            } else if (o1.getAge() < o2.getAge()){
+                return -1;
+            }
+            if (o1.getScore() > o2.getScore()) {
+                return 1;
+            } else if (o1.getScore() < o2.getScore()) {
+                return -1;
+            }
+            return o1.getName().compareTo(o2.getName());
+
+        });
         //sort(arr);
         sort(stus);
         // 遍历
