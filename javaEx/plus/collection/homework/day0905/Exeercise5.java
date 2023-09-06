@@ -1,9 +1,6 @@
 package javaEx.plus.collection.homework.day0905;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * @author SiYi
@@ -18,12 +15,12 @@ public class Exeercise5 {
         list.add("d");
         list.add("e");
         list.add("f");
-        Set<String> treeSet= new TreeSet<>();
-        treeSet.add("d");
-        treeSet.add("e");
-        treeSet.add("z");
-        treeSet.add("h");
-        list.addAll(treeSet);
+        Set<String> hashSet= new HashSet<>();
+        hashSet.add("d");
+        hashSet.add("e");
+        hashSet.add("z");
+        hashSet.add("h");
+        list.addAll(hashSet);
         System.out.println("并集:"+list);
     }
 }

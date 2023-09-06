@@ -58,9 +58,10 @@ public class Mylist {
 //
 //        });
 
-        vector.sort((o1, o2) -> {
-            return o1.getAge() - o2.getAge();
-        });
+
+        //当返回值只有一句可以不写方法体和return
+        方法引用: vector.sort(Comparator.comparingInt(Student::getAge));
+        //vector.sort((o1, o2) -> o1.getAge() - o2.getAge());
         System.out.println(vector.toString());
         Student student = (Student) vector.get(3);
         student.setName("三娃");
