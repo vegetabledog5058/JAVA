@@ -17,45 +17,24 @@ import java.util.Set;
 public class MosiPassword {
     public static void main(String[] args) {
         Map<Character,String>morseCodeMap = new HashMap<>();
-        morseCodeMap.put('a', ".-");
-        morseCodeMap.put('b', "-...");
-        morseCodeMap.put('c', "-.-.");
-        morseCodeMap.put('d', "-..");
-        morseCodeMap.put('e', ".");
-        morseCodeMap.put('f', "..-.");
-        morseCodeMap.put('g', "--.");
-        morseCodeMap.put('h', "....");
-        morseCodeMap.put('i', "..");
-        morseCodeMap.put('j', ".---");
-        morseCodeMap.put('k', "-.-");
-        morseCodeMap.put('l', ".-..");
-        morseCodeMap.put('m', "--");
-        morseCodeMap.put('n', "-.");
-        morseCodeMap.put('o', "---");
-        morseCodeMap.put('p', ".--.");
-        morseCodeMap.put('q', "--.-");
-        morseCodeMap.put('r', ".-.");
-        morseCodeMap.put('s', "...");
-        morseCodeMap.put('t', "-");
-        morseCodeMap.put('u', "..-");
-        morseCodeMap.put('v', "...-");
-        morseCodeMap.put('w', ".--");
-        morseCodeMap.put('x', "-..-");
-        morseCodeMap.put('y', "-.--");
-        morseCodeMap.put('z', "--..");
-        //morseCodeMap.put(' ', "/"); // 空格用"/"表示
-        //String []words = {"gin", "zen", "gig", "msg"};
-        String []words = {"a"};
+        String arr[] = {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
+        int count =0;
+        for (String str:arr) {
+            morseCodeMap.put((char)('a'+count),str);
+            count++;
+        }
+        String []words = {"gin", "zen", "gig", "msg"};
+        //String []words = {"a"};
         Set<String>result = new HashSet<>();
         for (int i = 0; i < words.length; i++) {
             String str ="";
-//            for (char c:words[i].toCharArray()) {
-//                str += morseCodeMap.get(c);
-//            }
-            for (int j = 0; j < words[i].length(); j++) {
-                char word = words[i].charAt(j);
-                str+=morseCodeMap.get(word);
+            for (char c:words[i].toCharArray()) {
+                str += morseCodeMap.get(c);
             }
+//            for (int j = 0; j < words[i].length(); j++) {
+//                char word = words[i].charAt(j);
+//                str+=morseCodeMap.get(word);
+//            }
             result.add(str);
         }
         System.out.println(result.size());

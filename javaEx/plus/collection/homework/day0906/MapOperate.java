@@ -57,23 +57,28 @@ public class MapOperate {
         System.out.println(provinces.size());
 
         Set<String> name = provinces.keySet();
-        Iterator<String> iterator = name.iterator();
+
         Set<String>tem = new HashSet<>();
         //创建匹配器
         String regex = ".*江.*";
         Pattern pattern = Pattern.compile(regex);
 
-        while (iterator.hasNext()) {
+       name.removeIf((e)->e.contains("江"));
+        System.out.println(provinces);
+        System.out.println(provinces.size());
+        Iterator<String> iterator = name.iterator();
+        //while (iterator.hasNext()) {
             String provinceName = iterator.next();
 //            if (provinceName.indexOf("江") >= 0) {
 ////                tem.add(provinceName);
 //                iterator.remove();
 //            }
-            Matcher matcher =  pattern.matcher(provinceName);
-            if(matcher.matches()){
-                iterator.remove();
-            }
-        }
+            //正则
+//            Matcher matcher =  pattern.matcher(provinceName);
+//            if(matcher.matches()){
+//                iterator.remove();
+//            }
+     //   }
         //匹配集合删除
 //        System.out.println(tem);
 //        for (String pname:tem
