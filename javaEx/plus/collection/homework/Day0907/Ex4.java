@@ -20,7 +20,7 @@ public class Ex4 {
         }
         System.out.println(list);
         //list.stream().mapMultiToInt()
-        Double avg = list.stream().mapToInt(num->num).average().getAsDouble();
+        Double avg = list.stream().mapToInt(num->num*num).average().getAsDouble();
         System.out.println(avg);
        // list.stream().flatMapToInt()
 

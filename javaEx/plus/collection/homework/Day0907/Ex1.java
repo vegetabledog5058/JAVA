@@ -1,8 +1,10 @@
 package javaEx.plus.collection.homework.Day0907;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -16,10 +18,14 @@ import java.util.stream.Stream;
 public class Ex1 {
     public static void main(String[] args) {
         String[] arr = {"a", "b", "c"};
+        if(arr==null){
+            throw new NullPointerException();
+        }
         List<String> list1 = Arrays.asList(arr);
-       String str = list1.stream().reduce("",(e1,e2)->e1+e2);
-        System.out.println(str);
 
+       String str = list1.stream().reduce("",(e1,e2)->e1+e2);
+      String str2 = list1.stream().collect(Collectors.joining());
+        System.out.println(str2);
         //
     }
 }
