@@ -1,7 +1,10 @@
 package javaEx.plus.collection.homework.Day0907.shidianban;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 /**
  * @author SiYi
@@ -30,26 +33,17 @@ public class PokerGame {
     public void home() {
         choice();
         //没有撑死,开始比较
-        if (player.getCardsNum() == 5) {
+        if (player.getCardsNum() == 5&&player.getNumPoint()<=21) {
             System.out.println("您赢了!!!对方手牌是:");
             System.out.println(robot.getCardRobot());
         }else if (player.getCardsNum() < 5 && player.getNumPoint() <= 21) {
 
-            computerChoice1();
-            if (compare() == 0) {
-                System.out.println("平局");
-
-            } else if (compare() > 0) {
-                System.out.println("您输了,对方手牌是:");
-                System.out.println(robot.getCardRobot());
-
-            } else {
-                System.out.println("您赢了!对方手牌是:");
-                System.out.println(robot.getCardRobot());
-            }
+//            computerChoice1();
+            computerChoice2();
+            booPrint();
          }else {
             //撑死
-            System.out.println("撑死了!");
+            System.out.println("你撑死了!");
         }
         again();
     }
@@ -116,7 +110,22 @@ public class PokerGame {
         cardsList.remove(0);
         return tem;
     }
-
+private  void booPrint(){
+        if (robotResult<0){
+            System.out.println("对方撑死了,手牌是:");
+            System.out.println(robot.getCardRobot());
+        }else if (compare()>0){
+            System.out.println("你输了!对方手牌是:");
+            System.out.println(robot.getCardRobot());
+        }else if (compare()==0){
+            System.out.println("平局!,对方手牌是:");
+            System.out.println(robot.getCardRobot());
+        }
+        else {
+            System.out.println("你赢了!对方手牌是:");
+            System.out.println(robot.getCardRobot());
+        }
+}
     private void computerChoice1() {
 
         if (robot.getNumPoint() <= player.getNumPoint() && robot.getNumPoint() != 21) {
@@ -133,7 +142,36 @@ public class PokerGame {
 
     }
     //记牌器算法
-    private
+    private void computerChoice2() {
+            flagRobot =true;
+            while (cardCount()&&flagRobot) {
+                robot.addCard(Licensing());
+                if (!booleanResultRobot()) flagRobot = false;
+            }
+
+        if (robot.getNumPoint() > 21) {robotResult = -1;}
+        else {robotResult = robot.getNumPoint();}
+
+
+    }
+    private boolean cardCount(){
+        //int nums[] = {1,1,1,2,4,6,8,10,12,14,16,18,20};
+       // List<Integer> list = Arrays.stream(nums).boxed().collect(Collectors.toList());
+       //num = num%2==0 ? num:num-1;
+       // int index = Collections.binarySearch(list,num);
+        int num = 21-robot.getNumPoint();
+        int count = 0;
+            for (int i = 0; i < cardsList.size(); i++) {
+                if(cardsList.get(i).getPoint()<=num){
+                    count++;
+                }
+            }
+            if(count>cardsList.size()-count){
+                return true;
+            }return false;
+
+
+    }
 
     //开始比较
     private Integer compare() {
