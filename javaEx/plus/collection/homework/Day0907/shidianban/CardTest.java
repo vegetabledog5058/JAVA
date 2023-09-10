@@ -8,8 +8,11 @@ import java.util.List;
  * @date 2023/9/8 19:50
  * @desciption:
  */
+
 public class CardTest {
     public static void main(String[] args) {
         PokerGame pokerGame = new PokerGame();
+        pokerGame.home();
+
     }
 }

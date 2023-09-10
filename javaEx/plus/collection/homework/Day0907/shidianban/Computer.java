@@ -13,42 +13,30 @@ public class Computer {
     private List<Card> cardRobot;
     private Integer playerPoint;
     private Integer numPoint;
-    private Integer CardsNum;
+    private Integer cardsNum;
 
-    public Computer(Card card,Player player){
+    public Computer(Card card){
         cardRobot = new ArrayList<>();
         cardRobot.add(card);
-        CardsNum =1;
+        cardsNum =1;
         numPoint= card.getPoint();
-        playerPoint = player.getNumPoint();
-    }
-    //判断规则
-    //摸牌
-    public void ReceiveCard(Card card){
-        if(isOrNotAdd()){
-            //摸牌
 
-        }else {
-            //不摸牌
+    }
+    public List<Card> getCardRobot() {
+        return cardRobot;
+    }
+    public Integer getNumPoint(){
+        return numPoint;
+    }
+    public Integer getCardsNum(){
+        return cardsNum;
+    }
 
-        }
-    }
-    private boolean isOrNotAdd() {
-        //true时需要补牌
-    return numPoint<playerPoint&&numPoint!=21;
-    }
-    private Integer add(Card card){
+    public void addCard(Card card){
         numPoint+=card.getPoint();
-return 0;
+        cardsNum++;
+        cardRobot.add(card);
     }
-    private boolean BooleanPoint(){
-        return numPoint<=21;
-    }
-    //手牌判断(添加以后判断)
-    private boolean BooleanCardNum(){
-        return CardsNum==5;
-    }
-
 
 
 

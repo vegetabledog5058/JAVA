@@ -18,7 +18,7 @@ public class Card {
     public static final List<String> symbolList = List.of(symbol1, symbol2, symbol3, symbol4);
     public static final List<String> cardRanksList = List.of("2", "A", "K", "Q", "J", "10", "9", "8", "7", "6", "5",
             "4", "3");
-    private static final List<String> onePoint = List.of("K", "Q", "J",blackJoker,redJoker);
+    private static final List<String> onePoint = List.of("K", "Q", "J","A",blackJoker,redJoker);
     private String cardSuitSymbols;
     private String cardRanks;
     private Integer cardOrder;
@@ -43,6 +43,9 @@ public class Card {
 
     public Integer getPoint() {
         if (onePoint.indexOf(cardRanks)>-1) {
+            if(cardRanks.equals("A")){
+                return 2;
+            }
             return 1;
         } else
             return 2*Integer.valueOf(cardRanks);

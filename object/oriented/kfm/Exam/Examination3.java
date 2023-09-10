@@ -21,8 +21,6 @@ public class Examination3 {
         List<Integer> list = Arrays.stream(nums).boxed().collect(Collectors.toList());
         System.out.println(list);
         Set<Integer> set = new HashSet<>(list);
-
-
         boolean flag = false;
         int tar = 0;
         int first =0;
