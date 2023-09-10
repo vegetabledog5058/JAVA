@@ -1,7 +1,5 @@
 package javaEx.plus.collection.homework.Day0907.shidianban;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author SiYi
@@ -13,7 +11,7 @@ public class Poker {
     private List<Card> poker;
 
     public Poker(){
-        poker = new ArrayList<>();
+        poker = new LinkedList<>();
     }
     public    List<Card> poker() {
 
@@ -30,4 +28,6 @@ public class Poker {
         }
         return poker;
     }
+
+
 }

@@ -10,10 +10,6 @@ import java.util.List;
  */
 public class CardTest {
     public static void main(String[] args) {
-        Poker test = new Poker();
-        List<Card> list = test.poker();
-        for (int i = 0; i < 54; i++) {
-            System.out.print(list.get(i)+"\t");
-        }
+        PokerGame pokerGame = new PokerGame();
     }
 }
