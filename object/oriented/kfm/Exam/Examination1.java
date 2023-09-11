@@ -23,15 +23,14 @@ public class Examination1 {
     public static void main(String[] args) {
         String str = "  the sky is blue  ";
         String str1 = "a good    example";
-        int  length = str1.length();
-        while(true){
+        int  length = 0;
+
+        //思路一,通过replace去重
+        while(length!=str1.length()){
             length = str1.length();
             str1 = str1.replace("  "," ");
-            if(length==str1.length()){
-                break;
-            }
-
         }
+        //思路二不需要进行去除重复空格,只需要颠倒以后,判断字符串数组长度大于1,进行输出
         System.out.println(str1);
         String newstr[] = str1.trim().split(" ");
         for (int i = 0,j= newstr.length-1; i <j ; i++,j--) {

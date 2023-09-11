@@ -1,10 +1,6 @@
 package javaEx.plus.collection;
 
-import javaEx.plus.collection.homework.day0904.StudentList;
-
 import java.util.Comparator;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Vector;
 
 /**
