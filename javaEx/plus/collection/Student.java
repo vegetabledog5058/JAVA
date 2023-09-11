@@ -16,9 +16,9 @@ package javaEx.plus.collection;
 
 public class Student {
     private int age;
+
     private String name;
     private Integer score;
-
     public Student() {
     }
 
