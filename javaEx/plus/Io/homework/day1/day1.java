@@ -33,6 +33,7 @@ public class day1 {
 //搜索文件夹名字数量
         countFile(file1);
         System.out.println(map);
+        System.out.println(file1.length());
 
         //计算指定磁盘大小
         long length = countLength(file1);
@@ -49,14 +50,15 @@ public class day1 {
 
         //lambda表达式
         FileFilter FileFilter = (File pa) -> pa.isFile();
-        File file33[] = file1.listFiles();
-        System.out.println(Arrays.toString(file33));
-        File file[] = file1.listFiles(FileFilter);
-        System.out.println(Arrays.toString(file));
-
+        //      File file33[] = file1.listFiles();
+//        System.out.println(Arrays.toString(file33));
+//        File file[] = file1.listFiles(FileFilter);
+//        System.out.println(Arrays.toString(file));
+//实验
 //        System.out.println(file3.isDirectory());
 //        System.out.println(file2.isDirectory());
 //        System.out.println(file1.isDirectory());
+
 //        if (delete(file1)) {
 //            System.out.println("文件夹删除成功");
 //        } else {
@@ -84,8 +86,7 @@ public class day1 {
 
 //         File files[] =  dictionary.listFiles();
 //        System.out.println(Arrays.toString(files));
-//        if (file.exists() && files.isDirectory()) {
-//        }
+
 
     }
 
@@ -93,14 +94,15 @@ public class day1 {
         FileFilter FileFilter = (File pa) -> pa.isFile();
         File files[] = file.listFiles(FileFilter);
 
-            for (File file1 : files) {
-                String last = file1.toString().substring(file1.toString().lastIndexOf("."));
-                map.put(last, map.getOrDefault(last, 0) + 1);
+        for (File file1 : files) {
+            String last = file1.toString().substring(file1.toString().lastIndexOf("."));
+            map.put(last, map.getOrDefault(last, 0) + 1);
+
 
         }
     }
 
-    public static long countLength(File file) {
+    public static long countLengthNodir(File file) {
         long sum = 0;
         File files[] = file.listFiles();
         for (File file2 : files
@@ -109,6 +111,22 @@ public class day1 {
         }
 
         return sum >> 20;
+    }
+
+    public static long countLength(File file) {
+        long sum = 0;
+
+        if (file.isDirectory()) {
+            File files[] = file.listFiles();
+            for (File file2 : files) {
+                sum += countLength(file2);
+            }
+
+        }else {
+            sum+=file.length();
+        }
+
+        return sum ;
     }
 
 
