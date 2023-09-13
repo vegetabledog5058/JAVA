@@ -1,4 +1,4 @@
-package javaEx.plus.Io.homework.day3;
+package date_Structure.homework.day3;
 
 /**
  * @author SiYi
@@ -7,4 +7,7 @@ package javaEx.plus.Io.homework.day3;
  * @desciption:
  */
 public class Trans {
+    public static void main(String[] args) {
+
+    }
 }

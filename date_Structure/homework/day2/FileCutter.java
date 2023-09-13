@@ -1,4 +1,4 @@
-package javaEx.plus.Io.homework.day2;
+package date_Structure.homework.day2;
 
 import java.io.*;
 
@@ -19,14 +19,14 @@ public class FileCutter {
      */
 
     //计算数量
-   /* public static int split(final File original, final long size, final File directory) {
+    public static int split(final File original, final long size, final File directory) {
         long fileSize = original.length(); // 原始文件的大小
         long maxSize = size ; // 指定的文件大小上限
         int n = (int) Math.ceil((double) fileSize / maxSize);
         try (FileInputStream fileInputStream = new FileInputStream(original)) {
             byte[] buffer = new byte[(int) (maxSize)]; // 缓冲区大小设置为 size MB
-            for (int i = 1; i <= n; i++) {
-                String fileName = "file" + (i) + ".temp";
+            for (int i = 0; i < n; i++) {
+                String fileName =   i + ".temp";
                 File file = new File(directory, fileName);
 
                 try (FileOutputStream fileOutputStream = new FileOutputStream(file);
@@ -48,10 +48,10 @@ public class FileCutter {
         }
 
         return n;
-    }*/
+    }
 //直接分割
-    public static int split(final File original, final long size, final File directory) {
-        if(!original.isFile()||original==null){
+  /*  public static int split(final File original, final long size, final File directory) {
+        if(original==null||!original.isFile()){
             return 0;
         }
         if(directory.isDirectory()&&directory.exists()){
@@ -69,19 +69,34 @@ public class FileCutter {
                    FileOutputStream fileOutputStream = new FileOutputStream(file);
 
                    long sum = size;
-                   while (sum>=Integer.MAX_VALUE-8&&fileInputStream.available()!=0){
+                   while (sum!=0&&fileInputStream.available()!=0){
                        byte bytes[] = new byte[Integer.MAX_VALUE-8];
                        int readBytes  = fileInputStream.read(bytes);
                        fileOutputStream.write(bytes,0,readBytes);
                        sum-=readBytes;
 
-
                    }
+//                   if(fileInputStream.available()!=0){
+//                       byte bytes[] = new byte[(int)sum];
+//                       int readBytes = fileInputStream.read(bytes);
+//                       fileOutputStream.write(bytes,0,readBytes);
+//                   }
+                   fileOutputStream.close();
 
 
                }
            }else {
                //size小于int最大值
+               byte bytes[] = new byte[(int)size];
+               while (fileInputStream.available()!=0){
+                   int readBytes = fileInputStream.read(bytes);
+                   File file = new File(directory,count++ +".temp");
+                   FileOutputStream fileOutputStream = new FileOutputStream(file);
+                   fileOutputStream.write(bytes,0,readBytes);
+                   System.out.println("分割文件"+file);
+                   fileOutputStream.close();
+
+               }
            }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
@@ -90,12 +105,12 @@ public class FileCutter {
         }
         return 0;
     }
-
+*/
 
 
 
     public static void main(String[] args) {
-        File file = new File("D:\\Java_Test\\mv.m4s");
+        File file = new File("D:\\Java_Test\\Wiz Khalifa,Charlie Puth - See You Again.mp4");
         File directory = new File("D:\\Java_Test\\cache_fake");
 
         split(file, 10<<20, directory);
