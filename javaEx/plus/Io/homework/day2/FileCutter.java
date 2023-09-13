@@ -1,4 +1,4 @@
-package date_Structure.homework.day2;
+package javaEx.plus.Io.homework.day2;
 
 import java.io.*;
 
