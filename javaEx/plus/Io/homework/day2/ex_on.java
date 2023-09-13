@@ -12,14 +12,14 @@ import java.io.*;
  * Bowing, In homesickness I'm drowned
  */
 public class ex_on {
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
 //        File file = new File("D:\\Java_Test");
         //添加
         String s1 = "the moonlight by the window,";
         String s2 = "Can it be hoarfrost on the ground";
         String s3 = "Looking up, I find the moon bright";
         String s4 = "Bowing, In homesickness I'm drowned";
-        try ( FileOutputStream fileOutputStream = new FileOutputStream("D:\\Java_Test\\test.txt");){
+        try (FileOutputStream fileOutputStream = new FileOutputStream("D:\\Java_Test\\test.txt");) {
             byte bytes1[] = s1.getBytes();
             byte bytes2[] = s2.getBytes();
             byte bytes3[] = s3.getBytes();
@@ -34,6 +34,7 @@ public class ex_on {
             fileOutputStream.write("Bowing, In homesickness I'm drowned".getBytes());
             fileOutputStream.write('\r');
             fileOutputStream.write("这是追加".getBytes());
+            fileOutputStream.write("这是追加".getBytes());
 
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
@@ -42,23 +43,25 @@ public class ex_on {
         }
 
         //复制
-        try(
+        try (
                 FileInputStream file = new FileInputStream("D:\\Java_Test\\test.txt");
                 FileOutputStream fileOutputStream = new FileOutputStream("D:\\Java_Test\\test1.txt");
 
-        ){
+        ) {
+    //方法一
+
+
+  //方法二
           /*  //解码
            byte byteTxt[] =  file.readAllBytes();
            //编码
             fileOutputStream.write(byteTxt);*/
-
+//方法三
             file.transferTo(fileOutputStream);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
 
 
     }
