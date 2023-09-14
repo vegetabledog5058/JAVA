@@ -31,24 +31,24 @@ public class Serialize {
 
 
 ////序列化写入
-//        try (FileOutputStream fileOutputStream = new FileOutputStream("file\\test.txt");
-//             //ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-//             ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
-//        ){
-//
-//            //outputStream.writeInt(1);
-//
-//            outputStream.writeObject(animal1);
-//            outputStream.writeObject(animal2);
-//
-//
-//
-////            byte bytes[] = byteArrayOutputStream.toByteArray();
-////            fileOutputStream.write(bytes);
-//
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
+        try (FileOutputStream fileOutputStream = new FileOutputStream("file\\test.txt");
+             //ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+             ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
+        ){
+
+            //outputStream.writeInt(1);
+
+            outputStream.writeObject(animal1);
+            outputStream.writeObject(animal2);
+
+
+
+//            byte bytes[] = byteArrayOutputStream.toByteArray();
+//            fileOutputStream.write(bytes);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
 //animal1.setName("儿子");
 

@@ -15,10 +15,20 @@ public class Animal implements Serializable {
    private static final long serialVersionUID = 10L;
     private   String name;
     private  int id;
+    private Animal animal;
 
-    public Animal(String name, int id) {
+
+    public Animal(String name, int id ) {
         this.name = name;
         this.id = id;
+    }
+
+    public void setAnimal(Animal animal){
+        this.animal = animal;
+    }
+
+    public Animal getAnimal() {
+        return animal;
     }
 
     public String getName() {
