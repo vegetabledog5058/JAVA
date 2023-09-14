@@ -40,7 +40,7 @@ class outer{
     static class inner{
         private static outer outer = new outer();
     }
-public static outer getInstnace(){
+public static outer getInstance(){
         //内部类之间静态成员互相访问
         return inner.outer;
 }
@@ -60,8 +60,8 @@ class Test{
 //        System.out.println(test2);
 
         //静态内部类
-        outer test5 = outer.getInstnace();
-        outer test6 = outer.getInstnace();
+        outer test5 = outer.getInstance();
+        outer test6 = outer.getInstance();
         System.out.println(test1);
         System.out.println(test2);
     }
