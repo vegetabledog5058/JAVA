@@ -1,5 +1,4 @@
 package javaEx.plus.Io.homework.day5;
-
 import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;
 
@@ -13,8 +12,8 @@ public class ex_Thread {
     public static void main(String[] args) {
 //thread 方式一:
 
-        Mythread mythread = new Mythread();
-//        mythread.start();
+        MyThread MyThread = new MyThread();
+//        MyThread.start();
 
 //runnable 方式二:
         //创建实现类的对象
@@ -159,7 +158,7 @@ class RunAble implements Runnable {
  * 3.创建Thread类的子类的对象
  * 4.通过此对象调用start()执行线程
  */
-class Mythread extends Thread {
+class MyThread extends Thread {
 
     public void run() {
         for (int i = 0; i < 100; i++) {
