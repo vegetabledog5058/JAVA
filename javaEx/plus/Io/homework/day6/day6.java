@@ -9,7 +9,7 @@ package javaEx.plus.Io.homework.day6;
 public class day6 {
     public static void main(String[] args) {
         Object o = new Object();
-        Mythread2 m = new Mythread2();
+        MyThread m = new MyThread();
 
         Thread t1 = new Thread(m, "一号窗口");
         Thread t2 = new Thread(m, "二号窗口");
@@ -22,7 +22,7 @@ public class day6 {
 
 }
 
-class Mythread2 extends Thread {
+class MyThread extends Thread {
     private int tickets = 100;
 
 
