@@ -1,4 +1,4 @@
-package Net.Day1;
+package javaEx.plus.Net.Day1;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
