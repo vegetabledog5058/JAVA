@@ -1,4 +1,4 @@
-package EX_JDBC;
+package EX_JDBC.day1;
 
 
 import com.mysql.cj.protocol.Resultset;
