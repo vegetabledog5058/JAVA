@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import javaEx.plus.Io.homework.day4.json;
 
+import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.util.Arrays;
@@ -60,7 +61,7 @@ public class Probability {
 
 }
 
-class Website {
+class Website implements Serializable {
     private String name;
     private String url;
 
