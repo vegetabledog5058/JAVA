@@ -35,10 +35,6 @@ public class Util_jdbcTest {
 
 
 
-
-
-
-
 //        String sql1 = "insert into dept(deptno,dname,loc)values(?,?,?);";
 //        String sql2 = "insert into emp(ENAME,JOB,MGR,HIREDATE,SALARY,COMM,DEPTNO)values(?,?,?,?,?,?,?);";
 //        String sql3 = "delete from emp where ENAME = ?";

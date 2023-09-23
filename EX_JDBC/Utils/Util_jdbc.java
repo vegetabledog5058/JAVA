@@ -1,7 +1,9 @@
 package EX_JDBC.Utils;
 
-import com.mysql.cj.protocol.Resultset;
+import EX_JDBC.EXAM0923.Book;
 
+
+import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -139,21 +141,27 @@ public class Util_jdbc<T> implements AutoCloseable{
         }
         return list;
     }
+    public List<T> selectAll(String sql, IResultMapper<T>resultMapper) throws SQLException {
+        execute(sql,Statement.NO_GENERATED_KEYS);
+        rt = ps.executeQuery();
+        List list = new ArrayList<>();
+        while (rt.next()){
+            T t = resultMapper.mapper(rt);
+            list.add(t);
+        }
+        return list;
+    }
 
-    public void setParams(Object... params) throws SQLException {
+    private void setParams(Object... params) throws SQLException {
         if (params != null) {
             for (int i = 0; i < params.length; i++) {
                 ps.setObject(i + 1, params[i]);
-                System.out.println(params[i].getClass());
             }
         }
     }
 }
 
-@FunctionalInterface
-interface IResultMapper<T> {
-    T mapper(ResultSet set);
-}
+
 
 class EmpResultMapper implements IResultMapper<Emp> {
 
@@ -175,3 +183,4 @@ class EmpResultMapper implements IResultMapper<Emp> {
         return emp;
     }
 }
+

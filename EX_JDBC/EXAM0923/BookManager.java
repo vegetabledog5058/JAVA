@@ -1,11 +1,16 @@
 package EX_JDBC.EXAM0923;
 
+import EX_JDBC.Utils.IResultMapper;
 import EX_JDBC.Utils.Util_jdbc;
 
 import java.io.*;
+import java.math.BigDecimal;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
+import java.sql.SQLData;
 import java.sql.SQLException;
+import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -15,8 +20,7 @@ import java.util.Scanner;
  * @desciption:
  */
 public class BookManager {
-    private boolean book =false;
-    private boolean log = false;
+
     private Scanner sc = new Scanner(System.in);
 
     public BookManager() {
@@ -44,7 +48,7 @@ public class BookManager {
     }
 
     /**
-     *
+     *添加图书
      */
     public void addBookInfo(){
 //        String sql = "insert into books(book_title, publication_date, author, price, quantity)values ('test'," +
@@ -59,32 +63,90 @@ public class BookManager {
             System.out.println("输入作者");
             String c= sc.next();
             System.out.println("输入价格(两位小数)");
-            double d= sc.nextDouble();
+            String d= sc.next();
             System.out.println("输入质量");
             String e= sc.next();
-            int result = db.insert(sql,"jack","2001-2-4","jack","10.88",10);
-
+            int result = db.insert(sql,a,b,c,d,e);
+            //结果
             if(result>0)System.out.println("添加成功!第"+result+"本书");
-            System.out.println(result);
+            else System.out.println("添加失败");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
     }
     /**
-     *
+     *删除图书
      */
-    public void removeBook(){}
-    /**
-     *
-     */
-    public void modifyBookQuantity(){}
-}
-class Test{
-    public static void main(String[] args) {
+    public void removeBook(){
+        String sql = "delete from books where book_title = ?";
+        try (Util_jdbc db = new Util_jdbc("jdbc:mysql://localhost:3306/manger","root","");
+        ){
+            System.out.println("输入您要删除的书名");
+            int result = db.delete(sql,sc.next());
 
+            if(result>0)System.out.println("删除成功!"+result+"行受到影响");
+            else System.out.println("删除失败");
 
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
+    /**
+     *修改图书数量
+     */
+    public void modifyBookQuantity(){
+        String sql = "update books set quantity  = ? where book_title = ?";
+        try (Util_jdbc db = new Util_jdbc("jdbc:mysql://localhost:3306/manger","root","");
+        ){
+            System.out.println("输入新的数量");
+            int a = sc.nextInt();
+            System.out.println("输入修改的书名");
+            String b = sc.next();
+            int result = db.update(sql,a,b);
+
+            if(result>0)System.out.println("修改成功!"+result+"行受到影响");
+            else System.out.println("修改失败");
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     *查询所有图书
+     */
+    public void showAllBooks(){
+        String sql = "select * from books";
+        try (Util_jdbc db = new Util_jdbc("jdbc:mysql://localhost:3306/manger","root","");
+        ){
+            List list = db.selectList(sql, set -> {
+                Book book = new Book();
+                try {
+                    book.setId(set.getInt("id"));
+                    book.setBookTitle(set.getString("book_title"));
+                    book.setAuthor(set.getString("author"));
+                    Date date = set.getDate("publication_date");
+                    java.sql.Date sqldate = new java.sql.Date(date.getTime());
+                    book.setPublicationDate(sqldate);
+                    book.setPrice(BigDecimal.valueOf(set.getDouble("price")));
+                    book.setQuantity(set.getInt("quantity"));
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                return book;
+            });
+
+            if(list!=null)System.out.println(list);
+            else System.out.println("删除失败");
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
 
 }
 
