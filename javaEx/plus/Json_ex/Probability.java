@@ -6,11 +6,17 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import javaEx.plus.Io.homework.day4.json;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.lang.reflect.Type;
-import java.net.HttpURLConnection;
+import java.net.*;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicIntegerArray;
 
 /**
  * @author SiYi
@@ -20,6 +26,7 @@ import java.util.List;
  */
 public class Probability {
     public static void main(String[] args) {
+
         String data = """
                                 {
                                 "websites":[
@@ -44,20 +51,69 @@ public class Probability {
         //两种方法:
         //1.通过解析数组中的字段进行新建对象
         //2.通过自定义反序列化
+        //解析json
         JSONObject jsonObject = JSON.parseObject(data);
         JSONArray array = jsonObject.getJSONArray("websites");
         Website[] websites = new Website[array.size()];
+        //得到website数组
         for (int i = 0; i < array.size(); i++) {
             JSONObject obj = array.getJSONObject(i);
             String name = obj.getString("name");
             String url = obj.getString("url");
             websites[i] = new Website(name, url);
         }
+        //给定url数组
+        String []urls = new String[websites.length];
 
-//        System.out.println(Arrays.toString(websites));
+        for (int i = 0; i < websites.length; i++) {
+            urls[i] = websites[i].getUrl();
+        }
 
+        AtomicIntegerArray results =  IterArray(urls);
+        System.out.println((results));
 
     }
+
+
+    public static AtomicIntegerArray IterArray(String[] urls) {
+        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(urls.length, urls.length, 0, TimeUnit.NANOSECONDS,
+                new SynchronousQueue<>());
+        AtomicIntegerArray results = new AtomicIntegerArray(urls.length);
+        for ( int i = 0; i < urls.length; i++) {
+             int count = i;
+            threadPoolExecutor.execute(new Runnable() {
+                @Override
+                public  void run() {
+                    try {
+                       int result =  Check(new URL(urls[count]))? 1:0;
+                       results.set(count,result);
+
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                }
+            });
+        }
+        threadPoolExecutor.shutdown();
+        try {
+            threadPoolExecutor.awaitTermination(5, TimeUnit.SECONDS);
+
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        return results;
+    }
+
+    public static boolean Check(URL url) throws IOException {
+        HttpURLConnection httpURLConnection  = (HttpURLConnection) url.openConnection();
+        httpURLConnection.setRequestMethod("HEAD");
+        httpURLConnection.setConnectTimeout(5000);
+        httpURLConnection.connect();
+        boolean result =  httpURLConnection.getResponseCode() == HttpURLConnection.HTTP_OK;
+        return result;
+    }
+
 
 }
 
