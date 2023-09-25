@@ -85,7 +85,7 @@ public class Probability {
                 @Override
                 public  void run() {
                     try {
-                       int result =  Check(new URL(urls[count]))? 1:0;
+                       int result =  Check(new URL(urls[count]));
                        results.set(count,result);
 
                     } catch (IOException e) {
@@ -105,13 +105,13 @@ public class Probability {
         return results;
     }
 
-    public static boolean Check(URL url) throws IOException {
+    public static int Check(URL url) throws IOException {
         HttpURLConnection httpURLConnection  = (HttpURLConnection) url.openConnection();
         httpURLConnection.setRequestMethod("HEAD");
         httpURLConnection.setConnectTimeout(5000);
         httpURLConnection.connect();
-        boolean result =  httpURLConnection.getResponseCode() == HttpURLConnection.HTTP_OK;
-        return result;
+        return  httpURLConnection.getResponseCode();
+
     }
 
 
