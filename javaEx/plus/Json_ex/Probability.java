@@ -69,24 +69,21 @@ public class Probability {
             urls[i] = websites[i].getUrl();
         }
 
-        AtomicIntegerArray results =  IterArray(urls);
-        System.out.println((results));
+      IterArray(urls);
 
     }
 
 
-    public static AtomicIntegerArray IterArray(String[] urls) {
+    public static void IterArray(String[] urls) {
         ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(urls.length, urls.length, 0, TimeUnit.NANOSECONDS,
                 new SynchronousQueue<>());
-        AtomicIntegerArray results = new AtomicIntegerArray(urls.length);
         for ( int i = 0; i < urls.length; i++) {
              int count = i;
             threadPoolExecutor.execute(new Runnable() {
                 @Override
                 public  void run() {
                     try {
-                       int result =  Check(new URL(urls[count]));
-                       results.set(count,result);
+                        Check(new URL(urls[count]));
 
                     } catch (IOException e) {
                         throw new RuntimeException(e);
@@ -101,16 +98,19 @@ public class Probability {
 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
+
         }
-        return results;
     }
 
-    public static int Check(URL url) throws IOException {
+    public static void Check(URL url) throws IOException {
+        long time = System.currentTimeMillis();
         HttpURLConnection httpURLConnection  = (HttpURLConnection) url.openConnection();
         httpURLConnection.setRequestMethod("HEAD");
         httpURLConnection.setConnectTimeout(5000);
         httpURLConnection.connect();
-        return  httpURLConnection.getResponseCode();
+        int result =  httpURLConnection.getResponseCode();
+        System.out.println(url + " 响应代码: " + result + " 响应时间: " + (System.currentTimeMillis() - time) + "ms");
+        httpURLConnection.disconnect();
 
     }
 

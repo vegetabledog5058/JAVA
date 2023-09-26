@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Main-Class: javaEx.plus.Json_R1.RequestURL
+

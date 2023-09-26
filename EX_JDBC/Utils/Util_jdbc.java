@@ -39,7 +39,7 @@ public class Util_jdbc<T> implements AutoCloseable{
         this.pass = pass;
     }
 
-    public Connection getConnection() {
+    public Connection getConnection() throws SQLException {
         if (con == null) {
             try {
                 con = DriverManager.getConnection(url, user, pass);

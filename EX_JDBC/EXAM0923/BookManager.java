@@ -63,8 +63,9 @@ public class BookManager {
 
     private boolean check(String tableName) {
 
-        try  {Connection con = db.getConnection();
-            ResultSet resultSet = con.getMetaData().getTables(null, "manager", tableName, new String[]{"TABLE"});
+        try (Connection con = db.getConnection();
+             ResultSet resultSet = con.getMetaData().getTables(null, "manager", tableName, new String[]{"TABLE"});
+        ) {
             if (resultSet.next()) {
                 return true;
             }
