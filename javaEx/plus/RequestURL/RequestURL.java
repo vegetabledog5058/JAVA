@@ -1,4 +1,4 @@
-package javaEx.plus.Json_R1;
+package javaEx.plus.RequestURL;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -22,7 +22,6 @@ public class RequestURL {
         RequestURL re1 = new RequestURL();
         re1.IterArray(re1.read());
     }
-    public RequestURL(){}
         public static List<String> read() {
             try (BufferedReader br = new BufferedReader(new FileReader("./server.txt"))) {
                 List<String> list = new ArrayList<>();
