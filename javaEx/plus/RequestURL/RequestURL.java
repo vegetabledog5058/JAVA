@@ -22,8 +22,9 @@ public class RequestURL {
         RequestURL re1 = new RequestURL();
         re1.IterArray(re1.read());
     }
+    //javaEx/plus/RequestURL/server.txt
         public static List<String> read() {
-            try (BufferedReader br = new BufferedReader(new FileReader("./server.txt"))) {
+            try (BufferedReader br = new BufferedReader(new FileReader("javaEx/plus/RequestURL/server.txt"))) {
                 List<String> list = new ArrayList<>();
                 //将ip储存到list列表中
                 br.lines().forEach(list::add);
@@ -65,10 +66,14 @@ public class RequestURL {
             long time = System.currentTimeMillis();
             HttpURLConnection httpURLConnection  = (HttpURLConnection) url.openConnection();
             httpURLConnection.setRequestMethod("HEAD");
-            httpURLConnection.setConnectTimeout(5000);
+            httpURLConnection.setConnectTimeout(3000);
             httpURLConnection.connect();
             int result =  httpURLConnection.getResponseCode();
-            System.out.println(url + " 响应代码: " + result + " 响应时间: " + (System.currentTimeMillis() - time) + "ms");
+            if(result==HttpURLConnection.HTTP_OK){
+                System.out.println(url + " 响应代码: " + result + " 响应时间: " + (System.currentTimeMillis() - time) + "ms");
+            }else {
+                System.out.println(url + " 连接失败，响应码： " + result);
+            }
             httpURLConnection.disconnect();
 
         }
