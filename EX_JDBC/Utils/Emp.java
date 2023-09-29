@@ -1,8 +1,9 @@
 package EX_JDBC.Utils;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Emp implements java.io.Serializable {
+public class Emp implements Serializable {
 
     private Integer empno;
 
@@ -14,7 +15,7 @@ public class Emp implements java.io.Serializable {
 
     private Date hiredate;
 
-    private Double sal;
+    private Double salary;
 
     private Double comm;
 
@@ -60,12 +61,12 @@ public class Emp implements java.io.Serializable {
         this.hiredate = hiredate;
     }
 
-    public Double getSal() {
-        return sal;
+    public Double getSalary() {
+        return salary;
     }
 
-    public void setSal(Double sal) {
-        this.sal = sal;
+    public void setSalary(Double salary) {
+        this.salary = salary;
     }
 
     public Double getComm() {
@@ -86,6 +87,6 @@ public class Emp implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return "Emp{" + "empno=" + empno + ", ename=" + ename + ", job=" + job + ", mgr=" + mgr + ", hiredate=" + hiredate + ", sal=" + sal + ", comm=" + comm + ", deptno=" + deptno + '}';
+        return "Emp{" + "empno=" + empno + ", ename=" + ename + ", job=" + job + ", mgr=" + mgr + ", hiredate=" + hiredate + ", salary=" + salary + ", comm=" + comm + ", deptno=" + deptno + '}';
     }
 }

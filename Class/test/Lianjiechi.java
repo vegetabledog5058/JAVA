@@ -20,8 +20,8 @@ public class Lianjiechi {
     public static void main(String[] args) throws Exception {
         //c3p0
         //xml配置
-
-        ComboPooledDataSource source= new ComboPooledDataSource("otherc3p0");
+//默认和otherc3p0两种
+        ComboPooledDataSource source= new ComboPooledDataSource();
         //直接配置
 //        source.setDriverClass("com.mysql.cj.jdbc.Driver");
 //        source.setJdbcUrl("jdbc:mysql://localhost:3306/company");

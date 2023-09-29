@@ -153,28 +153,11 @@ public class BookManager {
         String sql = "select * from books";
         try (Util_jdbc db = new Util_jdbc("jdbc:mysql://localhost:3306/manger", "root", "");
         ) {
-            List list = db.selectList(sql, set -> {
-                Book book = new Book();
-                try {
-                    book.setId(set.getInt("id"));
-                    book.setBookTitle(set.getString("book_title"));
-                    book.setAuthor(set.getString("author"));
-                    Date date = set.getDate("publication_date");
-                    java.sql.Date sqldate = new java.sql.Date(date.getTime());
-                    book.setPublicationDate(sqldate);
-                    book.setPrice(BigDecimal.valueOf(set.getDouble("price")));
-                    book.setQuantity(set.getInt("quantity"));
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-                return book;
-            });
 
-            if (list != null) System.out.println(list);
-            else System.out.println("删除失败");
 
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+
+
+
         }
     }
 

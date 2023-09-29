@@ -17,7 +17,7 @@ public class My_Transection {
 
 
         Connection con = null;
-        try ( Util_jdbc tb = new Util_jdbc<>("jdbc:mysql://localhost:3306/company","root","");
+        try ( Util_jdbc tb = new Util_jdbc("jdbc:mysql://localhost:3306/company","root","");
              ){
             con = tb.getConnection();
             con.setAutoCommit(false);
