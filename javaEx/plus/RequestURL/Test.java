@@ -1,12 +1,10 @@
 package javaEx.plus.RequestURL;
 
+import org.apache.commons.net.ftp.FTP;
+import org.apache.commons.net.ftp.FTPClient;
+import org.apache.commons.net.ftp.FTPReply;
+
 import java.io.*;
-import java.net.InetSocketAddress;
-import java.net.Socket;
-import java.util.LinkedList;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author SiYi
@@ -21,39 +19,45 @@ public class Test {
 //                new LinkedBlockingQueue<>(3));
         //得到要发送的文件--string格式
 //        String SendFile = read("javaEx/plus/RequestURL/server.json");
-        String SendFile = read("javaEx/plus/RequestURL/test.json");
+        String SendFile = read("javaEx/plus/RequestURL/server.json");
         byte bytes[] = SendFile.getBytes();
 
-
-
-
-                    try {
-                        Socket client = new Socket("8.130.92.162", 80);
-
-                        OutputStream outputStream = client.getOutputStream();
-                        outputStream.write(bytes);
-                        client.shutdownOutput();
-
-
-                        // 7.使用网络字节输入流对象的方法 read 读取服务端回写的数据到指定的字节数组中
-
-                        // 将字节数组中的数据转换成字符串，并打印到控制台
-                        while (true){
-                            InputStream is = client.getInputStream();
-                            int i = is.read(bytes);// 读取几个字节，就返回几
-                            System.out.println(new String(bytes, 0, i));
-                        }
-
-
-
-
-
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-
+        try {
+            //创建ftp客户端
+            FTPClient ftpClient = new FTPClient();
+            //连接ftp服务器(主机服务器和端口)
+            ftpClient.connect("8.130.92.162",21);
+            //大于200小于300时成功
+            if (FTPReply.isPositiveCompletion(ftpClient.getReplyCode())) {
+                System.out.println("FTP连接成功。");
+                //建立连接ftp客户端
+                boolean result = ftpClient.login("joker","112233");
+                if (result) {
+                    System.out.println("FTP认证成功。");
+                } else {
+                    System.out.println("FTP认证失败，用户名或密码错误。");
                 }
+            } else {
+                System.out.println("未连接到FTP服务器。");
+                ftpClient.disconnect();
+            }
+            ftpClient.enterLocalPassiveMode();
+            ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+            FileInputStream fileInputStream = new FileInputStream("javaEx/plus/RequestURL/test.txt");
+            boolean uploadResult = ftpClient.storeFile("/test",fileInputStream);
+            fileInputStream.close();
 
+            if (uploadResult) {
+                System.out.println("文件上传成功");
+            } else {
+                System.out.println("文件上传失败");
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
 
 
     private static String read(String path) {

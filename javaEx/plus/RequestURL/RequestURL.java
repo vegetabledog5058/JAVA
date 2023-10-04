@@ -1,24 +1,22 @@
 package javaEx.plus.RequestURL;
 
 import com.alibaba.fastjson.JSON;
+import org.apache.commons.net.ftp.FTP;
+import org.apache.commons.net.ftp.FTPClient;
+import org.apache.commons.net.ftp.FTPReply;
 
 
 import java.io.*;
 import java.net.HttpURLConnection;
-import java.net.InetAddress;
-import java.net.Socket;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.*;
-import java.util.stream.Collectors;
 
 /**
  * @author SiYi
  * @version 1.0
  * @date 2023/9/26 19:34
- * @desciption:
+ * @desciption: 需要fastjson和org.apache.commons.net包
  */
 public class RequestURL {
     //阻塞队列存放输入的url,实现访问与检查url同步
@@ -28,6 +26,10 @@ public class RequestURL {
 
     //每行的url
     private static int line;
+    //需要上传的文件本地测试路径
+    private static String localPath ="javaEx/plus/RequestURL/test.txt";
+    //用于本地测试时的本地url路径
+    private static String URLPath ="javaEx/plus/RequestURL/test.json";
 
     public static void main(String[] args) {
         start();
@@ -44,17 +46,23 @@ public class RequestURL {
             throw new RuntimeException(e);
         }
         //创建两个线程
-        ThreadPoolExecutor poolExecutor = new ThreadPoolExecutor(2, 2, 30,
+        ThreadPoolExecutor poolExecutor = new ThreadPoolExecutor(3, 3, 30,
                 TimeUnit.SECONDS,
                 new SynchronousQueue<>());
-        //进行持续读取文件流
+        //进行持续读取文件流,如果不需要持续读取可以舍弃
 //        poolExecutor.execute(new Runnable() {
 //            @Override
 //            public void run() {
-//
+//                try {
+//                    readWhile();
+//                } catch (FileNotFoundException e) {
+//                    throw new RuntimeException(e);
+//                } catch (InterruptedException e) {
+//                    throw new RuntimeException(e);
+//                }
 //            }
 //        });
-        //检查网址有效
+      //  检查网址有效
         poolExecutor.execute(new Runnable() {
             @Override
             public void run() {
@@ -65,14 +73,20 @@ public class RequestURL {
                 }
             }
         });
+        poolExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                sendFile();
+            }
+        });
 
     }
 
 
     /**
-     * 用于读取文件中的每一行URL网址
+     * 用于读取文件中的每一行URL网址,已经废弃,按需使用
      * version 1.0
-     * @return
+     *
      */
 //    private static void read() {
 //        //javaEx/plus/RequestURL/server.txt本地测试脚本
@@ -104,12 +118,13 @@ public class RequestURL {
     }
 
     /**
-     * 用于持续读取文件检查新添加的url
+     * 用于持续读取文件检查新添加的url,如果不需要一边读取一边输入可舍弃
+     * version 2
      */
     private static void readWhile() throws FileNotFoundException, InterruptedException {
         List<String> URLList = readList();
         //获取新加的元素
-       String url = URLList.get(URLList.size()-1);
+        String url = URLList.get(URLList.size() - 1);
         list.put(url);
         LinkedList.add(url);
     }
@@ -120,7 +135,7 @@ public class RequestURL {
     private static List<String> readList() {
         //填写网址url文件的位置
 //        String path = "javaEx/plus/RequestURL/server.json";
-        String path = "javaEx/plus/RequestURL/test.json";
+        String path =URLPath;
         //调用read方法读取文件,返回js文件,传入地址
         String fileContent = read(path);
         return JSON.parseArray(fileContent, String.class);
@@ -184,42 +199,65 @@ public class RequestURL {
         ThreadPoolExecutor poolExecutor = new ThreadPoolExecutor(5, 30, 30,
                 TimeUnit.SECONDS,
                 new LinkedBlockingQueue<>(3));
-        //得到要发送的文件--string格式
-//        String SendFile = read("javaEx/plus/RequestURL/server.json");
-        String SendFile = read("javaEx/plus/RequestURL/test.json");
+        //要发送的文件--string格式
+        String SendFile = read(localPath);
         byte bytes[] = SendFile.getBytes();
         for (int i = 0; i < LinkedList.size(); i++) {
             int finalI = i;
+
             poolExecutor.execute(new Runnable() {
                 @Override
                 public void run() {
-                    try  {
-                        Socket client = new Socket(LinkedList.get(finalI)+"/test", 11223);
-                        OutputStream outputStream = client.getOutputStream();
-                        outputStream.write(bytes);
-                        client.shutdownOutput();
-
-                        InputStream is = client.getInputStream();
-                        // 7.使用网络字节输入流对象的方法 read 读取服务端回写的数据到指定的字节数组中
-                        int i = is.read(bytes);// 读取几个字节，就返回几
-                        // 将字节数组中的数据转换成字符串，并打印到控制台
-                        System.out.println(new String(bytes, 0, i));
-                        is.close();
-                        client.shutdownInput();
-                        client.close();
-
+                    //这里设置参数,默认用户名和密码是 joker 和 112233,端口默认21,路径默认是/test下
+                    try {
+                        FTPUpload(LinkedList.get(finalI).split("//")[1],21,"joker","112233","/test");
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-
                 }
             });
         }
 
 
     }
-
-
+/**
+ *方法用于建立ftp请求,上传文件
+ * @param remotePath 远程服务器的相对路径
+ */
+ private static void FTPUpload(String url,int port,String username,String password,
+                               String remotePath) throws IOException {
+     //创建ftp客户端
+     FTPClient ftpClient = new FTPClient();
+     //连接ftp服务器(主机服务器和端口)
+     ftpClient.connect(url,port);
+     //大于200小于300时成功
+     if (FTPReply.isPositiveCompletion(ftpClient.getReplyCode())) {
+         System.out.println(url+"FTP连接成功。");
+         //建立连接ftp客户端
+         boolean result = ftpClient.login(username,password);
+         if (result) {
+             System.out.println(url+"FTP认证成功。");
+         } else {
+             System.out.println(url+"FTP认证失败，用户名或密码错误。");
+         }
+     } else {
+         System.out.println("未连接到 "+url+"FTP服务器。");
+         ftpClient.disconnect();
+     }
+     //被动模式（Passive Mode）下进行数据传输。
+     ftpClient.enterLocalPassiveMode();
+     //文件传输类型设置为二进制文件类型（FTP.BINARY_FILE_TYPE）
+     ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+     //文件上传
+     FileInputStream fileInputStream = new FileInputStream(localPath);//这里是上传的文件的地址
+     boolean uploadResult = ftpClient.storeFile(remotePath,fileInputStream);
+     fileInputStream.close();
+     if (uploadResult) {
+         System.out.println(url+"文件上传成功");
+     } else {
+         System.out.println(url+"文件上传失败");
+     }
+ }
 
     /**
      * 方法用于读取文件
