@@ -1,7 +1,5 @@
-package LeetCode;
+package LeetCode.testtt;
 
-
-import object.oriented.kfm.Filmv2_0.List;
 
 /**
  * @author SiYi

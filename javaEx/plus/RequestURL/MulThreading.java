@@ -9,7 +9,6 @@ import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
@@ -41,7 +40,7 @@ public class MulThreading {
         List<String> list = new LinkedList();
         String line;
         //javaEx/plus/RequestURL/server.txt本地测试脚本
-        try (BufferedReader br = new BufferedReader(new FileReader("javaEx/plus/RequestURL/server.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("javaEx/plus/RequestURL/server.json"))) {
             while ((line = br.readLine()) != null) {
                     list.add(line);
             }
