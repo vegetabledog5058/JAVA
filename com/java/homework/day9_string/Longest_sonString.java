@@ -9,9 +9,12 @@ package com.java.homework.day9_string;
 public class Longest_sonString {
     public static void main(String[] args) {
 
-        String str = "abceeabcdef";
+        String str = "pwwkew";
+        String str4 = "abcabcd";
+        String str2 = "dvdf";
 
-        String sub = subString(str);
+//        String sub = subString(str);
+        String sub = mySubString(str2);
         System.out.println(sub);
 
     }
@@ -97,6 +100,25 @@ public class Longest_sonString {
                 }
             }
 
+        }
+        return max;
+    }
+
+    public static String mySubString(String s) {
+        s=s+" ";
+        String max = "";
+        int start = 0;
+        for (int end = start + 1; end < s.length(); end++) {
+            String sub = s.substring(start, end);
+            char current = s.charAt(end);
+            if (sub.indexOf(current) != -1||end==s.length()-1) {
+                if (max.length() < sub.length()) {
+                    max = sub;
+
+                }
+                start = s.indexOf(current, start) + 1;
+
+            }
         }
         return max;
     }
