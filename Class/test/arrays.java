@@ -1,5 +1,6 @@
 package Class.test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -14,5 +15,6 @@ public class arrays {
        arr=  Arrays.copyOf(arr,20);
        arr=  Arrays.copyOf(arr,20);
         System.out.println(arr.length);
+
     }
 }
