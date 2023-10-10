@@ -12,7 +12,7 @@ import java.util.Arrays;
  */
 public class arrays {
     public static void main(String[] args) {
-        int arr[] = new int[10];
+        int []arr = new int[10];
        arr=  Arrays.copyOf(arr,20);
        arr=  Arrays.copyOf(arr,20);
         System.out.println(arr.length);
