@@ -7,7 +7,8 @@ import java.util.Arrays;
  * @author SiYi
  * @version 1.0
  * @date 2023/9/20 20:01
- * @desciption:
+ * @desciption:test
+ *
  */
 public class arrays {
     public static void main(String[] args) {
