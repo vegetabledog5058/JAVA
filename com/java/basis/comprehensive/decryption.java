@@ -19,7 +19,7 @@ public class decryption {
             a = a/10;
             count++;
         }
-        //将数字存入数组
+        //将数字存入数组.
         int []arr = new int[count];
         int k= 0;
         while (tem!=0){
