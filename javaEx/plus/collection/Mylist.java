@@ -7,7 +7,7 @@ import java.util.Vector;
  * @author SiYi
  * @version 1.0
  * @date 2023/9/4 15:47
- * @desciption:
+ * @desciption: 测试
  */
 public class Mylist {
     public static void main(String[] args) {
